@@ -71,13 +71,53 @@ body{
     }
 }
 
+.image_container{
+    transition: 1s;
+    width: 80px;
+    height: 40px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.image_container2{
+    transition: 1s;
+    width: 100%;
+    height: 340px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image_logo{
+    transition: 200ms;
+    height: 40px;
+    width: 80px;
+    z-index: 200;
+    position: fixed;
+}
+
+.image_logo2{
+    transition: 200ms;
+    height: 120px;
+    width: 200px;
+    z-index: 200;
+    position: fixed;
+    display: flex;
+    margin: auto;
+}
+
 .sticky__header{
     position: relative;
     background-color: #ccc;
     height: 40px;
     top: 0;
     position: sticky;
-    transition: 1s;
+    transition: 800ms;
     z-index: 0;
 }
 
@@ -85,7 +125,7 @@ body{
     position: relative;
     background-color: #F5F3C1;
     height: 340px;
-    transition: 1s;
+    transition: 200ms;
     z-index: 0;
 }
 
@@ -105,17 +145,16 @@ body{
     transition:1s;
 }
 
-.header__ul{
-    padding: 0%;
-    margin: 0 0 0 0;
+.header__ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0 20px;
     height: 40px;
     background-color: #27E1C1;
-    border: 100px black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 10;
-}
+  }
+  
 
 .header__div{
     transition: 0.1s;
@@ -156,7 +195,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: justify;
     margin: 0;
 }
 
@@ -204,13 +243,13 @@ body{
 }
 
 .article__section__p{
-    text-align: center;
-    padding: 20px;
+    text-align: justify;
+    padding: 70px;
 }
 
 .article__section__p__2{
-    text-align: center;
-    padding: 20px;
+    text-align: justify;
+    padding: 70px;
 }
 
 .footer{
@@ -249,7 +288,24 @@ i{
     margin: auto;
 }
 
+@media only screen and (max-width:1200px){
+    .header__div{
+        transition: 0.2s;
+        display: inline-block;
+        padding: 0 10px 0 10px;
+    }
+}
+
 @media only screen and (max-width:860px){
+    .image_container{
+        transition: 1s;
+        width: 80px;
+        height: 120px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     .header__ul{
         background-color: #27e1a9;
         
