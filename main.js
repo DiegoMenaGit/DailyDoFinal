@@ -41,9 +41,19 @@ function createSpan() {
   const randomValue = Math.floor(Math.random() * 30) + 1;
   span.style.setProperty('--i', randomValue);
   bubbles.appendChild(span);
-  if (spanCount >= 30) {
+  if (spanCount >= 50) {
     clearInterval(intervalId);
   }
 }
 
 intervalId = setInterval(createSpan, 1000);
+
+window.addEventListener("load", ()=>{
+  const loader = document.querySelector(".loader");
+
+  loader.classList.add("loader-hidden");
+
+  loader.addEventListener("transitioned", ()=>{
+    document.body.removeChild("loader");
+  })
+})
