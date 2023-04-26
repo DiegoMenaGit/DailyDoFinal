@@ -134,8 +134,8 @@ body{
 
 .image_logo2{
     transition: 200ms;
-    height: 120px;
-    width: 200px;
+    height: 200px;
+    width: 300px;
     z-index: 200;
     position: fixed;
     display: flex;
@@ -187,6 +187,8 @@ body{
 
 h1 {
     color: white;
+    font-weight: 400px;
+    font-size: 50px;
     padding: 20px;
     text-align: center;
 }
@@ -247,11 +249,14 @@ h1 {
     grid-template-columns: 0.7fr 1fr;
     grid-template-rows: 0.1fr 1fr;
 }
+.hola{
+    height: 0;
+}
 
 .article__section__div__2{
     display: grid;
     grid-template-columns: 1fr 0.7fr;
-    grid-template-rows: 0.1fr 1fr ;
+    grid-template-rows: 0.1fr 0fr ;
 }
 
 .article__section__div__h2{
@@ -260,7 +265,7 @@ h1 {
     align-items: center;
     text-align: justify;
     margin: 0;
-    padding: 40px 0 0 0;
+    padding: 20px 0 20px 0;
 }
 
 .article__section__imgcontainer{
@@ -309,6 +314,7 @@ h1 {
 .article__section__p{
     text-align: justify;
     padding: 70px;
+    margin: 0 40px 40px 40px;
 }
 
 .article__section__p:hover{
