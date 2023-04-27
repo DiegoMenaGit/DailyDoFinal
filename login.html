@@ -3,34 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
     <title>Document</title>
 </head>
 <body>
     <h1>Formulario</h1>
+    <div class="bubbles"></div>
     <article>
         <section>
             <div class="section__div1">
-                <label>Email</label>
-                <input class="input_email inputs" type="text">
-                <label>Username</label>
-                <input class="username inputs" type="text">
-                <label>Password</label>
-                <input class="password inputs" type="text">
+                <div class="inputs">
+                <label class="laber_input">Email</label>
+                <input class="input_email text_input" type="text">
+                </div>
+                <div class="inputs">
+                <label class="laber_input">Username</label>
+                <input class="username text_input" type="text">
+                </div>
+                <div class="inputs">
+                <label class="laber_input">Password</label>
+                <input class="password text_input" type="password">
+                </div>
             </div>
+            
         </section>
         <section>
-            <div class="section__div1">
-                <label>Email</label>
-                <input class="input_email_register inputs" type="text">
-                <label>Username</label>
-                <input class="input_username_register inputs" type="text">
-                <label>Password</label>
-                <input class="input_password_register inputs" type="text">
-                <label>Repeat Password</label>
-                <input class="input_repeatpassword_register inputs" type="text">
+            <div class="section__div1 section__div1__novisible">
+                <div class="inputs">
+                <label class="laber_input">Email</label>
+                <input class="input_email_register text_input" type="text">
+                </div>
+                <div class="inputs">
+                <label class="laber_input">Username</label>
+                <input class="input_username_register text_input" type="text">
+                </div>
+                <div class="inputs">
+                <label class="laber_input">Password</label>
+                <input class="input_password_register text_input" type="text">
+                </div>
+                <div class="inputs">
+                <label class="laber_input">Repeat Password</label>
+                <input class="input_repeatpassword_register text_input" type="text">
+                </div>
             </div>
         </section>
+        <div class="conatiner__boton">
+            <div class="boton">
+                <i class="fa fa-arrow-right"></i>
+            </div>
+        </div>
     </article>
+    <script src="login.js"></script>
 </body>
 </html>

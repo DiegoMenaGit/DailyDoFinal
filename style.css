@@ -32,6 +32,7 @@ body{
 {
     position: absolute;
     display: flex;
+    
 }
 
 .bubbles span
@@ -47,6 +48,7 @@ body{
     0 0 100px #2733e1;
     animation: bubbleanimation 100s linear infinite;
     animation-duration: calc(125s / var(--i));
+    
 }
 
 .bubbles span:nth-child(even)
@@ -54,18 +56,8 @@ body{
     background: #00ffe7;
     box-shadow: 0 0 0 10px #4fc3dc44,
     0 0 50px #00ffe7,
-    0 0 100px #00ffe7
+    0 0 100px #00ffe7;
 }
-
-.bubbles span:hover {
-    background-color: #fff;
-    box-shadow: 0 0 10px #4fc3dc44, 0 0 50px #4fc3dc, 0 0 100px #4fc3dc, 0 0 150px #4fc3dc;
-  }
-  
-  .bubbles span:hover:nth-child(even) {
-    background: #ff2d75;
-    box-shadow: 0 0 0 10px #4fc3dc44, 0 0 50px #ff2d75, 0 0 100px #ff2d75, 0 0 150px #ff2d75;
-  }
 
 @keyframes bubbleanimation
 {
