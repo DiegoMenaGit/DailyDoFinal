@@ -65,12 +65,23 @@ body{
     }
 }
 
-.section__div1__novisible{
+.novisible{
     display: none !important;
 }
 
+.container__forms {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .section__div1{
-    transition: 1s;
+    position: absolute;
+    transition: 100ms;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr;
@@ -89,8 +100,10 @@ body{
 }
 
 .section__div1__transition{
-    transition: 1s;
-    transform: translateX(900px) rotate(50deg);
+    position: absolute;
+    transition: 100ms;
+    transform: translateX(1400px) rotate(45deg) rotate3d(0, 1, 0, 270deg) ;
+
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr;
@@ -150,6 +163,11 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .boton{
@@ -171,6 +189,7 @@ body{
     height: 56px;
 }
 
+
 @keyframes background-pan {
     from {
         background-position: 0% center;
@@ -178,5 +197,24 @@ body{
 
     to {
         background-position: -200% center;
+    }
+}
+
+.angry{
+    background-image: url("media/angry.jfif");
+    width: 100vh;
+    height: 100vh;
+}
+
+@media only screen and (max-width:860px){
+    .bubbles{
+        display: none;
+    }
+    .section__div1{
+        width: 400px;
+        height: 500px;
+    }
+    .text_input{
+        width: 390px;
     }
 }
