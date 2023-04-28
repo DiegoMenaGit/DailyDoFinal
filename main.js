@@ -9,6 +9,7 @@ var imagecontainer = document.querySelector(".image_container2");
 var foto = document.querySelector(".header__container__foto");
 var sticky = header.offsetTop;
 var imagen = document.querySelector(".article__section__img__2");
+var signiUP = document.querySelector(".signiUP");
 var ver = imagen.offsetBottom;
 
 function myFunction() {
@@ -56,4 +57,9 @@ window.addEventListener("load", ()=>{
   loader.addEventListener("transitioned", ()=>{
     document.body.removeChild("loader");
   })
+})
+
+signiUP.addEventListener('click', ()=>{
+  console.log("Clicker")
+  window.location.href = 'login.html';
 })

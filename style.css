@@ -396,6 +396,12 @@ i{
         grid-column-end: auto;
     }
 
+    .article__section__p{
+        text-align: justify;
+        padding: 20px;
+        margin: 0 40px 40px 40px;
+    }
+
     .footer__div__p{
         margin: auto;
         font-size: 10px;

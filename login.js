@@ -2,7 +2,9 @@ const bubbles = document.querySelector('.bubbles');
 
 var login = document.querySelector(".login")
 var register = document.querySelector(".register")
-var boton = document.querySelector(".boton")
+var boton = document.querySelector(".boton1__p")
+var boton2 = document.querySelector(".boton")
+var volver = document.querySelector(".volver")
 
 login.classList.add("section__div1")
 register.classList.add("section__div1__transition")
@@ -25,8 +27,6 @@ var clickCount = 0
 
 boton.addEventListener('click', () => {
     clickCount++;
-    
-
     if (clickCount % 2 === 0) {
         register.classList.remove("section__div1")
         register.classList.add("section__div1__transition")
@@ -52,3 +52,18 @@ setInterval(function() {
         bubbles.classList.remove("angry")
     }
   }, 1000);
+
+  window.addEventListener("load", ()=>{
+    const loader = document.querySelector(".loader");
+  
+    loader.classList.add("loader-hidden");
+  
+    loader.addEventListener("transitioned", ()=>{
+      document.body.removeChild("loader");
+    })
+  })
+
+volver.addEventListener('click', ()=>{
+    console.log("Clicker")
+    window.location.href = 'index.html';
+})
