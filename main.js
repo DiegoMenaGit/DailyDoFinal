@@ -3,6 +3,8 @@ window.onscroll = function() {myFunction()};
 let progress = document.getElementById('progressbar')
 let totalHeghit = document.body.scrollHeight - window.innerHeight;
 
+var logout = document.querySelector(".logout")
+
 var header = document.querySelector(".header");
 var image = document.querySelector(".image_logo2");
 var imagecontainer = document.querySelector(".image_container2");
@@ -76,3 +78,11 @@ firebase.auth().onAuthStateChanged(function(user) {
     console.log("El usuario no esta loggueado")
   }
 });
+
+logout.addEventListener("click", (e)=>{
+ // logout.preventDefault();
+  auth.signOut().then(()=>{
+    console.log("sign out")
+    window.location = "login.html";
+  })
+})

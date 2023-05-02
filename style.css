@@ -554,9 +554,3 @@ a {
     outline: none;
     text-decoration: none;
 }
-
-.signiUP:hover{
-    position:static;
-    height: 500px;
-    display: fixed;
-    max-height: 500px;}
