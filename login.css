@@ -223,6 +223,13 @@ body{
     height: 100vh;
 }
 
+@media only screen and (max-height:800px){
+    .conatiner__boton{
+        transition: 200ms;
+        width: 2%;
+    }
+}
+
 @media only screen and (max-width:1280px){
     .bubbles{
         display: none;

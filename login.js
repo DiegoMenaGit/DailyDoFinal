@@ -100,34 +100,42 @@ volver.addEventListener('click', ()=>{
 
 
 
-boton2.addEventListener("click", (e)=>{
-  if(active){
+boton2.addEventListener("click", (e) => {
+  if (active) {
     console.log("estas en el register")
-  console.log(email.value, username.value, contrasenya.value, repetirContrasenya.value)
-  if(contrasenya.value == repetirContrasenya.value){
-  auth
-      .createUserWithEmailAndPassword(email.value, contrasenya.value)
-      .then(userCredential => {
-        // clear the form !!!!
-        allInputs.forEach(input => {
-          input.value = "";
+    console.log(email.value, username.value, contrasenya.value, repetirContrasenya.value)
+    if (contrasenya.value == repetirContrasenya.value) {
+      auth.createUserWithEmailAndPassword(email.value, contrasenya.value)
+        .then(userCredential => {
+          // clear the form !!!!
+          allInputs.forEach(input => {
+            input.value = "";
+          });
+          // irse a otra pagina !!!!
+          console.log("sign-up")
+        })
+        .catch(error => {
+          if (error.code === 'auth/invalid-email') {
+            modal.style.display = 'flex';
+      modalContent.style.display = 'flex';
+      modalContent.innerHTML = "¡¡¡El email es invalido!!!";
+          } else {
+            // Handle any other errors here
+            modal.style.display = 'flex';
+      modalContent.style.display = 'flex';
+      modalContent.innerHTML = "¡¡¡Error!!!";
+          }
         });
-        // irse a otra pagina !!!!
-        console.log("sign-up")
-      })
-  }
-  else{
-    //alert("¡¡¡Las contraseñas NO coinciden!!!")
-    modal.style.display = 'flex';
-    modalContent.style.display = 'flex';
-    modalContent.innerHTML = "¡¡¡Las contraseñas NO coinciden!!!";
-  }
-}
-else{
-  console.log("estas en el login")
-  console.log(email2.value, username2.value, contrasenya2.value)
-  auth
-      .signInWithEmailAndPassword(email2.value, contrasenya2.value)
+    } else {
+      //alert("¡¡¡Las contraseñas NO coinciden!!!")
+      modal.style.display = 'flex';
+      modalContent.style.display = 'flex';
+      modalContent.innerHTML = "¡¡¡Las contraseñas NO coinciden!!!";
+    }
+  } else {
+    console.log("estas en el login")
+    console.log(email2.value, username2.value, contrasenya2.value)
+    auth.signInWithEmailAndPassword(email2.value, contrasenya2.value)
       .then(userCredential => {
         // clear the form !!!!
         allInputs.forEach(input => {
@@ -136,7 +144,18 @@ else{
         // irse a otra pagina !!!!
         console.log("sign-in")
       })
-}
+      .catch(error => {
+        if (error.code === 'auth/invalid-email') {
+          modal.style.display = 'flex';
+      modalContent.style.display = 'flex';
+      modalContent.innerHTML = "¡¡¡El email es invalido!!!";
+        } else {
+          modal.style.display = 'flex';
+      modalContent.style.display = 'flex';
+      modalContent.innerHTML = "¡¡¡Error!!!";
+        }
+      });
+  }
 })
 /*
 logout.addEventListener("click", (e)=>{
