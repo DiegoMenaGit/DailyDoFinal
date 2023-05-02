@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="login.css">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
     <div class="volver">
@@ -24,15 +25,16 @@
             <div class="login">
                 <div class="inputs">
                 <label class="laber_input">Email</label>
-                <input class="input_email text_input" type="text">
+                <input class="input_email text_input" type="text" placeholder="tunombre@ejemplo.com" required>
                 </div>
                 <div class="inputs">
                 <label class="laber_input">Username</label>
-                <input class="username text_input" type="text">
+                <input class="username text_input" type="text" placeholder="NombreDeUsuario" required>
                 </div>
                 <div class="inputs">
                 <label class="laber_input">Password</label>
-                <input class="password text_input" type="password">
+                <input class="password text_input" type="password" placeholder="Contraseña" required>
+                <!--<div class="mostrar"> <i class="fa fa-eye"></i></div>-->
                 </div>
             </div>
             
@@ -41,19 +43,19 @@
             <div class="register">
                 <div class="inputs">
                 <label class="laber_input">Email</label>
-                <input class="input_email_register text_input" type="text">
+                <input class="input_email_register text_input" type="text" placeholder="tunombre@ejemplo.com" required>
                 </div>
                 <div class="inputs">
                 <label class="laber_input">Username</label>
-                <input class="input_username_register text_input" type="text">
+                <input class="input_username_register text_input" type="text" placeholder="NombreDeUsuario" required>
                 </div>
                 <div class="inputs">
                 <label class="laber_input">Password</label>
-                <input class="input_password_register text_input" type="password">
+                <input class="input_password_register text_input" type="password" placeholder="contraseña" required>
                 </div>
                 <div class="inputs">
                 <label class="laber_input">Repeat Password</label>
-                <input class="input_repeatpassword_register text_input" type="password">
+                <input class="input_repeatpassword_register text_input" type="password" placeholder="contraseña" required>
                 </div>
             </div>
         </section>
@@ -63,6 +65,27 @@
             </div>
         </div>
     </article>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script>
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAaCOYzY0U01U972XotnfvQvMXHML8IK1U",
+            authDomain: "dailydo-fcc2c.firebaseapp.com",
+            projectId: "dailydo-fcc2c",
+            storageBucket: "dailydo-fcc2c.appspot.com",
+            messagingSenderId: "130290065292",
+            appId: "1:130290065292:web:caf7c3ac1454a73aa480a9",
+            measurementId: "G-HLE2FLC323"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const analytics = firebase.analytics(app);
+        const auth = firebase.auth();
+    </script>
+
     <script src="login.js"></script>
 </body>
 </html>

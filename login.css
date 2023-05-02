@@ -86,7 +86,7 @@ body{
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr;
     width: 600px;
-    height: 800px;
+    height: 600px;
     margin: auto;
     padding: 0 0 0 0;
     justify-content: center;
@@ -223,6 +223,19 @@ body{
     height: 100vh;
 }
 
+@media only screen and (max-width:1280px){
+    .bubbles{
+        display: none;
+    }
+    .section__div1{
+        width: 400px;
+        height: 500px;
+    }
+    .text_input{
+        width: 390px;
+    }
+}
+
 @media only screen and (max-width:860px){
     .bubbles{
         display: none;
@@ -295,4 +308,16 @@ body{
     to{
         transform: rotate(1turn)
     }
+}
+
+.mostrar{
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 45px;
+    right: 0;
 }
