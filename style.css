@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+  }
+
 
 :root {
     --purple: #00ffe7;
@@ -542,4 +546,11 @@ i{
     to{
         transform: rotate(1turn)
     }
+}
+
+a {
+    z-index: 900;
+    color: white;
+    outline: none;
+    text-decoration: none;
 }
