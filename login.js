@@ -92,7 +92,6 @@ setInterval(function() {
   })
 
 volver.addEventListener('click', ()=>{
-    console.log("Clicker")
     window.location.href = 'index.html';
 })
 
@@ -102,8 +101,6 @@ volver.addEventListener('click', ()=>{
 
 boton2.addEventListener("click", (e) => {
   if (active) {
-    console.log("estas en el register")
-    console.log(email.value, username.value, contrasenya.value, repetirContrasenya.value)
     if (contrasenya.value == repetirContrasenya.value) {
       auth.createUserWithEmailAndPassword(email.value, contrasenya.value)
         .then(userCredential => {
@@ -112,7 +109,7 @@ boton2.addEventListener("click", (e) => {
             input.value = "";
           });
           // irse a otra pagina !!!!
-          console.log("sign-up")
+          window.location = "index.html";
         })
         .catch(error => {
           if (error.code === 'auth/invalid-email') {
@@ -133,8 +130,6 @@ boton2.addEventListener("click", (e) => {
       modalContent.innerHTML = "¡¡¡Las contraseñas NO coinciden!!!";
     }
   } else {
-    console.log("estas en el login")
-    console.log(email2.value, username2.value, contrasenya2.value)
     auth.signInWithEmailAndPassword(email2.value, contrasenya2.value)
       .then(userCredential => {
         // clear the form !!!!
@@ -142,7 +137,7 @@ boton2.addEventListener("click", (e) => {
           input.value = "";
         });
         // irse a otra pagina !!!!
-        console.log("sign-in")
+        window.location = "index.html";
       })
       .catch(error => {
         if (error.code === 'auth/invalid-email') {
@@ -167,10 +162,22 @@ logout.addEventListener("click", (e)=>{
 */
 
 
-
 modal.addEventListener('click', function(e) {
   if (e.target === modal || e.target === modalContent) {
     modal.style.display = 'none';
     modalContent.style.display = 'none';
+  }
+});
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in, get their information
+    var uid = user.uid;
+    var email = user.email;
+    console.log(`${uid} y ${email}`)
+    // ...
+  } else {
+    // User is signed out, redirect to login page
+    console.log("El usuario no esta loggueado")
   }
 });

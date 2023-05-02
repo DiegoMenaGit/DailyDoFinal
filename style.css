@@ -16,7 +16,7 @@ html {
   }
 
 body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family:  Verdana, Geneva, Tahoma, sans-serif;
     background-color: rgb(37, 37, 37);
     color: white;
     padding: 0%;
@@ -554,3 +554,9 @@ a {
     outline: none;
     text-decoration: none;
 }
+
+.signiUP:hover{
+    position:static;
+    height: 500px;
+    display: fixed;
+    max-height: 500px;}

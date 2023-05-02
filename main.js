@@ -63,3 +63,16 @@ signiUP.addEventListener('click', ()=>{
   console.log("Clicker")
   window.location.href = 'login.html';
 })
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in, get their information
+    var uid = user.uid;
+    var email = user.email;
+    console.log(`${uid} y ${email}`)
+    // ...
+  } else {
+    // User is signed out, redirect to login page
+    console.log("El usuario no esta loggueado")
+  }
+});
