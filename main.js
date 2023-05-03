@@ -3,6 +3,8 @@ window.onscroll = function() {myFunction()};
 let progress = document.getElementById('progressbar')
 let totalHeghit = document.body.scrollHeight - window.innerHeight;
 
+var sidebar__button = document.querySelector(".sidebar__button")
+var sidebar = document.querySelector(".sidebar")
 var logout = document.querySelector(".logout")
 
 var header = document.querySelector(".header");
@@ -61,10 +63,12 @@ window.addEventListener("load", ()=>{
   })
 })
 
+
 signiUP.addEventListener('click', ()=>{
   console.log("Clicker")
   window.location.href = 'login.html';
 })
+
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -85,4 +89,9 @@ logout.addEventListener("click", (e)=>{
     console.log("sign out")
     window.location = "login.html";
   })
+})
+
+sidebar__button.addEventListener("click", (e)=>{
+  console.log("HOLA HAGO ALGO")
+  sidebar.classList.toggle('closed');
 })

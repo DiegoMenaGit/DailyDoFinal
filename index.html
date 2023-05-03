@@ -16,6 +16,17 @@
          </div>
     <div id="progressbar"></div>
     <div id="scrollpath"></div>
+    <div class="sidebar__button">
+        <div class="sidebar__button__container">
+        <i class="fa fa-bars"></i>
+        </div>
+    </div>
+    <div class="sidebar closed">
+        <ul>
+            <ol class="sidebar__element signiUP"><i class="fa fa-user"></i></ol>
+            <ol class="sidebar__element logout">x</ol>
+        </ul>
+    </div>
     <div class="image_container2">
         <img class="image_logo2" src="media/LOGO.PNG" alt="DailyDo">
         </div>
@@ -23,45 +34,39 @@
         <div class="header__container">
             <nav class="navigator">
                 <ul class="header__ul">
-                    <a href="#dailydo">
+                    <a href="#dailydo" title="¿Qué és DailyDo?">
                         <div class="header__div">
                             <ol class="header__div__ol">
                             DaliyDo
                             </ol>
                         </div>
                     </a>
-                    <a href="#contactanos">
+                    <a href="#contactanos" title="Contactanos">
                         <div class="header__div">
                             <ol class="header__div__ol">
-                                Contactanos
+                                <i class="fa fa-phone"></i>
                             </ol>
                         </div>
                     </a>
-                    <a href="#descargar">
+                    <a href="#descargar" title="Descargar">
                         <div class="header__div">
                             <ol class="header__div__ol">
-                                Descargar
+                                <i class="fa fa-download"></i>
                             </ol>
                         </div>
                     </a>
-                    <a href="/">
-                        <div class="header__div">    
+                    <a href="#dudas">
+                        <div class="header__div" title="Dudas">    
                             <ol class="header__div__ol">
-                                Otros
+                                <i class="fa fa-question"></i>
                             </ol>
                         </div>
                     </a>
-                    <div class="header__div signiUP">
+                    <!--<div class="header__div signiUP" title="Side Menu">
                             <ol class="header__div__ol">
-                                <i class="fa fa-user"></i>
-                            
+                                <i class="fa fa-bars"></i>
                             </ol>
-                    </div>
-                        <div class="header__div logout">    
-                            <ol class="header__div__ol">
-                               x
-                            </ol>
-                        </div>
+                    </div>-->
                 </ul>
             </nav>
             <img class="header__container__foto" src="media/foto-header.jpg" alt="Daily Do">
@@ -139,6 +144,25 @@
                     Con Daily Do, podrás llevar un registro de tus horas de sueño, tus actividades diarias, tus ejercicios y tus comidas. Nuestra aplicación también te proporcionará recomendaciones personalizadas en función de tus hábitos diarios, ayudándote a ajustar tu estilo de vida para lograr una salud óptima.
                     Descarga Daily Do hoy mismo y comienza a vivir una vida más saludable y equilibrada. ¡Estamos ansiosos de ver tus progresos!
                 </p>
+            </div>
+        </section>
+        <section class="article__section" id="dudas">
+            <div class="article__section__form_container">
+                
+                <form class="article__section__form">
+                    <h2>Contacta Directamente</h2>    
+                    <div class="form__input">
+                    <input class="texto_input" type="text" placeholder="Duda" required>
+                    </div>
+                    <div class="form__input">
+                        <textarea class="texto_input" id="textarea" cols="30" rows="10" placeholder="Descripción de la Duda"></textarea>
+                    </div>
+                    <div class="form__input">
+                    <button>
+                        <i class="fa fa-paper-plane"></i>
+                    </button>
+                </div>
+                </form>
             </div>
         </section>
     </article>
