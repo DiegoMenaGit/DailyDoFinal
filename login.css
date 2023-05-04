@@ -212,6 +212,11 @@ body{
     height: 56px;
 }
 
+.boton:active{
+    transition: 200ms;
+    transform: scale(0.80);
+}
+
 
 @keyframes background-pan {
     from {
@@ -280,9 +285,12 @@ body{
 
 .image_logo2:hover{
     transition: 200ms;
-    transform:translateX(10px) translateY(10px);
-    width: 130px;
-    height: 80px;
+    transform:translateX(60px) translateY(40px) scale(3);
+    cursor: pointer;
+}
+
+.image_logo2:active{
+    transform: scale(2.4) translateX(20px) translateY(10px);
 }
 
 .loader{

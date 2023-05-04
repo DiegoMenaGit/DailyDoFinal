@@ -50,6 +50,10 @@ body{
     text-align: center;
 }
 
+.sidebar:hover{
+    background-color: rgba(39, 51, 225, 1);
+}
+
 .sidebar.closed{
     transition: 200ms;
     width: 0px;
@@ -309,11 +313,13 @@ h1 {
 }
 
 .article__section__imgcontainer{
+    object-fit: cover;
     display: flex;
     margin: auto;
 }
 
 .article__section__imgcontainer__2{
+    object-fit: cover;
     display: flex;
     margin: auto;
 }
