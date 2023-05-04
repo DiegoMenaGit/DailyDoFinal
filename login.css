@@ -79,11 +79,15 @@ body{
     transform: translate(-50%, -50%);
 }
 
+.container__forms .login{
+    height: 400px;
+}
+
 .section__div1{
     position: absolute;
     transition: 100ms;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
     width: 600px;
     height: 600px;
@@ -168,10 +172,12 @@ body{
     top: 5%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
 }
 
 .boton1__p{
     font-size: 20px;
+    cursor: pointer;
 }
 
 .conatiner__boton{

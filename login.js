@@ -1,6 +1,7 @@
 const bubbles = document.querySelector('.bubbles');
 const modal = document.querySelector('.modal');
 const modalContent = document.querySelector('.modal-content');
+const db = firebase.firestore(); 
 
 var active = false;
 
@@ -29,6 +30,8 @@ login.classList.add("section__div1")
 register.classList.add("section__div1__transition")
 
 let intervalId = null;
+
+modal.style.display = 'none';
 
 function createSpan() {
   const spanCount = bubbles.querySelectorAll('span').length;
@@ -95,32 +98,40 @@ volver.addEventListener('click', ()=>{
     window.location.href = 'index.html';
 })
 
-
-
-
-
-boton2.addEventListener("click", (e) => {
+boton2.addEventListener("click", async (e) => {
   if (active) {
     if (contrasenya.value == repetirContrasenya.value) {
       auth.createUserWithEmailAndPassword(email.value, contrasenya.value)
         .then(userCredential => {
-          // clear the form !!!!
-          allInputs.forEach(input => {
-            input.value = "";
-          });
-          // irse a otra pagina !!!!
+          const userId = userCredential.user.uid;
+        if (username.value != null) {
+          save_task(userId, username.value, "0");
+        } else {
+          save_task(userId, "randomGuy", "0");
+        }
+        // clear the form !!!!
+        allInputs.forEach(input => {
+          input.value = "";
+        });
+        // redirect to the index.html page after the data is saved
+        db.collection('usuarios').get()
+          .then(() => {
           window.location = "index.html";
         })
+          .catch(error => {
+          console.log(error);
+        });
+      })
         .catch(error => {
           if (error.code === 'auth/invalid-email') {
             modal.style.display = 'flex';
-      modalContent.style.display = 'flex';
-      modalContent.innerHTML = "¡¡¡El email es invalido!!!";
+            modalContent.style.display = 'flex';
+            modalContent.innerHTML = "¡¡¡El email es invalido!!!";
           } else {
             // Handle any other errors here
             modal.style.display = 'flex';
-      modalContent.style.display = 'flex';
-      modalContent.innerHTML = "¡¡¡Error!!!";
+            modalContent.style.display = 'flex';
+            modalContent.innerHTML = "¡¡¡Error!!!";
           }
         });
     } else {
@@ -181,3 +192,24 @@ firebase.auth().onAuthStateChanged(function(user) {
     console.log("El usuario no esta loggueado")
   }
 });
+
+function userlogout(){
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      auth.signOut().then(()=>{
+      })
+    } else {
+      console.log("El usuario no esta loggueado")
+    }
+  });
+}
+
+const save_task = (userid, username, points)=>{
+  db.collection('usuarios').doc().set({
+     userid,
+     username,
+     points
+   })
+   console.log("Enviado.")
+   console.log(userid, username + " " + points)
+ }

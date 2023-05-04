@@ -266,12 +266,18 @@ h1 {
 }
 
 .header__div:hover{
+    transition: 200ms;
     background-color: #2733e1;
     height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 15;
+}
+
+.header__div:active{
+    transition: 200ms;
+    transform: scale(0.80);
 }
 
 .header__div__ol{
@@ -357,26 +363,16 @@ h1 {
     border-radius: 20px;
 }
 
-.article__section__form_container{
-    background-color: rgba(249, 255, 247, 0.2);
-    display: flex;
-    height: 500px;
-    padding: 0 30px 0 30px;
-    justify-content: center;
-    align-items: center;
-}
 
-.article__section__form{
-    background-color: red;
-    height: 400px;
-    width: 600px;
-    padding: 14px;
-    display: grid;
-    grid-template-columns: 1fr;
-}
 
 .texto_input{
+    height: 30px;
+    font-size: 16px;
     width: 100%;
+}
+
+.novisible{
+    display: none;
 }
 
 h2{
@@ -397,15 +393,35 @@ h2{
 }
 
 .footer{
-    background-color: #27e1a9;
+    background-color: rgba(39, 225, 169, 0.6);
     margin: 0 0 0 0;
-    height: 50px;
+    height: 550px;
+}
+
+.article__section__form_container{
+    background-color: rgba(249, 255, 247, 0.2);
+    display: flex;
+    height: 500px;
+    padding: 0 30px 0 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.article__section__form{
+    background-color: rgba(27, 91, 195, 0.4);
+    border-radius: 20px;
+    height: 400px;
+    width: 600px;
+    padding: 14px;
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 .footer__div {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
+    justify-content: center;
     margin: auto;
 }
 
@@ -431,6 +447,7 @@ h2{
 i{
     margin: auto;
 }
+
 
 @media only screen and (max-width:1200px){
     .header__div{
@@ -630,4 +647,18 @@ a {
     color: white;
     outline: none;
     text-decoration: none;
+}
+
+.button__form{
+    cursor: pointer;
+    background: none;
+    font-size: 30px;
+    width: 60px;
+    height: 60px;
+    border: 0;
+    border-radius: 50%;
+}
+
+.button__form:hover{
+    background-color: rgba(0, 0, 0, 0.2);
 }

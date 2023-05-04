@@ -23,8 +23,8 @@
     </div>
     <div class="sidebar closed">
         <ul>
-            <ol class="sidebar__element signiUP"><i class="fa fa-user"></i></ol>
-            <ol class="sidebar__element logout">x</ol>
+            <ol class="sidebar__element signiUP">SignIn</i></ol>
+            <ol class="sidebar__element logout">LogOut</ol>
         </ul>
     </div>
     <div class="image_container2">
@@ -80,7 +80,7 @@
         
         <section class="article__section" id="dailydo">
             <h1 class="article__section__h1">
-                Bienvenido a <span class="magic">DailyDo</span>
+                Bienvenido a <span class="magic">DailyDo</span> 
             </h1>
             <div class="article__section__div">
                 <div>
@@ -146,27 +146,28 @@
                 </p>
             </div>
         </section>
+        
+    </article>
+    <footer class="footer">
         <section class="article__section" id="dudas">
             <div class="article__section__form_container">
                 
-                <form class="article__section__form">
+                <form class="article__section__form" id="formulario_dudas">
                     <h2>Contacta Directamente</h2>    
                     <div class="form__input">
-                    <input class="texto_input" type="text" placeholder="Duda" required>
+                    <input class="texto_input" id="form_titulo" type="text" placeholder="Duda" required>
                     </div>
                     <div class="form__input">
                         <textarea class="texto_input" id="textarea" cols="30" rows="10" placeholder="Descripción de la Duda"></textarea>
                     </div>
                     <div class="form__input">
-                    <button>
+                    <button class="button__form">
                         <i class="fa fa-paper-plane"></i>
                     </button>
                 </div>
                 </form>
             </div>
         </section>
-    </article>
-    <footer class="footer">
         <div class="footer__div">
             <p class="footer__div__p">© Diego Mena 2023</p>
             <div class="iconos"><a href="https://twitter.com/DailyDoOficial"><i class="fa fa-twitter"></a></i></div>
@@ -177,6 +178,7 @@
     </footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
     <script>

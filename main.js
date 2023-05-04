@@ -1,7 +1,16 @@
 window.onscroll = function() {myFunction()};
 
+const formulario_dudas = document.getElementById('formulario_dudas')
+const input_titulo = document.getElementById('form_titulo')
+const input_desc = document.getElementById('textarea')
+const db = firebase.firestore();
+
+const titol = document.querySelector(".article__section__h1")
+
 let progress = document.getElementById('progressbar')
 let totalHeghit = document.body.scrollHeight - window.innerHeight;
+
+var button__form = document.querySelector(".button__form");
 
 var sidebar__button = document.querySelector(".sidebar__button")
 var sidebar = document.querySelector(".sidebar")
@@ -70,18 +79,34 @@ signiUP.addEventListener('click', ()=>{
 })
 
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(async function(user) {
+  var nameuser = "Default";
   if (user) {
     // User is signed in, get their information
     var uid = user.uid;
     var email = user.email;
-    console.log(`${uid} y ${email}`)
+    console.log(`${uid} y ${email}`);
+
+    signiUP.classList.add("novisible")
+    logout.classList.remove("novisible")
+    // Query the usuarios collection to find documents with matching userid
+    const querySnapshot = await getUsers().where("userid", "==", uid).get();
+    
+    // Loop over the matching documents and log their data to console
+    querySnapshot.forEach(doc => {
+      console.log(doc.data().username);
+      nameuser = doc.data().username;
+    });
+    titol.innerHTML += ", " + nameuser;
     // ...
   } else {
     // User is signed out, redirect to login page
-    console.log("El usuario no esta loggueado")
+    console.log("El usuario no está logueado");
+    signiUP.classList.remove("novisible")
+    logout.classList.add("novisible")
   }
 });
+
 
 logout.addEventListener("click", (e)=>{
  // logout.preventDefault();
@@ -95,3 +120,38 @@ sidebar__button.addEventListener("click", (e)=>{
   console.log("HOLA HAGO ALGO")
   sidebar.classList.toggle('closed');
 })
+
+const save_task = (titulo, descripcion)=>{
+ db.collection('dudas').doc().set({
+    titulo,
+    descripcion
+  })
+  alert("Enviado con exito!!")
+}
+
+button__form.addEventListener("click", async (e)=>{
+  e.preventDefault();
+  console.log("enviando...")
+
+  const titulo_form = formulario_dudas["form_titulo"].value;
+  const desc_form = formulario_dudas["textarea"].value;
+  
+  save_task(titulo_form, desc_form);
+
+  input_titulo.value = ""
+  input_desc.value = ""
+
+  console.log(`${titulo_form} y ${desc_form}`)
+})
+
+const getTasks = () => db.collection('dudas').get();
+
+const getUsers = () => db.collection('usuarios');
+
+window.addEventListener('DOMContentLoaded', async (e)=>{
+  const querySnapshot = await getTasks();
+  querySnapshot.forEach(doc =>{
+    console.log(doc.data());
+  })
+})
+
