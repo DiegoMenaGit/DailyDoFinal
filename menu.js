@@ -51,6 +51,13 @@ const template = [
       },
     ],
   },
+  {
+    label: "Dormir",
+    click: async () => {
+      const { mainWindow } = require("./index.js");
+      mainWindow.loadFile("./html/sleep.html");
+    },
+  },
 ];
 
 const menu = Menu.buildFromTemplate(template);

@@ -2,6 +2,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body{
@@ -56,18 +57,82 @@ body{
     border-radius: 50%;
 }
 
-/*
-.ciclos:hover{
-    rotate: 180deg;
-    top: 50vh;
+.form__container{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: rgb(57, 43, 24);*/
+}
+
+.form{
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: red;
+    width: 300px;
+    height: 500px;
+}
+.form__div1{
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__div1__div2{
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__div1__div2__div2{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+/*.form__container:active{
+    background-image: url(../media/dedooo.webp);
+    background-size: cover;
 }*/
 
-/*
-.ciclo{
-    margin-top: 30px;
-    transform: scale(0.4);
-}
-*/
+.volver {
+    z-index: 500;
+    width: 80px;
+    height: 40px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image_logo2 {
+    transition: 200ms;
+    width: 80px;
+    height: 40px;
+  }
+  
+  .image_logo2:hover {
+    transition: 200ms;
+    transform: translateX(60px) translateY(40px) scale(3);
+    cursor: pointer;
+  }
+  
+  .image_logo2:active {
+    transform: scale(2.4) translateX(20px) translateY(10px);
+  }
+
 @media only screen and (max-width:2100px){
     
     .fondo{
