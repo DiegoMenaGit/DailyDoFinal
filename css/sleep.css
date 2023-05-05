@@ -1,0 +1,88 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: blue;
+    padding: 0 0 0 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.fondo{
+    height: 100vh;
+    width: 100vw;
+    margin-top: 300vh;
+    padding: 0;
+    background: linear-gradient(rgb(19, 10, 19),rgb(30, 16, 30), rgb(113, 46, 116),rgb(237, 140, 49) ,rgb(31, 133, 223),rgb(31, 133, 223), rgb(31, 133, 223));
+    position: absolute;
+    transform: scale(10);
+   
+    animation: spin 9s linear infinite;
+    z-index: 1;
+}
+
+.fondo:active{
+    rotate: -360deg;
+    /*transform-origin: center;*/
+}
+
+.ciclos{
+    height: 200vh;
+    width: 100vw;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 2;
+    text-align: center;
+    font-size: 200px;
+    z-index: 20;
+
+    animation: spin 9s linear infinite;
+}
+
+.dia{
+    display: flex;
+    align-items:end;
+    justify-content: center;
+}
+
+
+.sol_imagen{
+    padding: 20px;
+    border-radius: 50%;
+}
+
+/*
+.ciclos:hover{
+    rotate: 180deg;
+    top: 50vh;
+}*/
+
+/*
+.ciclo{
+    margin-top: 30px;
+    transform: scale(0.4);
+}
+*/
+@media only screen and (max-width:2100px){
+    
+    .fondo{
+        transition: 200ms;
+        transform: scale(15);
+    }
+}
+
+
+@keyframes spin {
+    from {
+     rotate: 0deg;
+    }
+    to {
+      rotate: 360deg;
+    }
+  }
+  
