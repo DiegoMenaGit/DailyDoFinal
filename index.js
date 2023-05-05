@@ -7,7 +7,7 @@ const {
   ipcMain,
 } = require("electron");
 //const { holdReady, data } = require("jquery");
-//const { menu } = require("./menu.js");
+const { menu } = require("./menu.js");
 
 let mainWindow;
 
@@ -27,7 +27,7 @@ function createWindow() {
   });
 
   mainWindow.loadFile("index.html");
-  // const { menu } = require("./menu");
+  const { menu } = require("./menu");
   module.exports.mainWindow = mainWindow;
   mainWindow.webContents.openDevTools();
 }
