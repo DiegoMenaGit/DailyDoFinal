@@ -1,0 +1,24 @@
+{
+  "name": "dailydofinal",
+  "version": "1.0.0",
+  "description": "A webApp of the flutter page Dailydo, where you can login and watch all of your info",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiegoMenaGit/DailyDoFinal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DiegoMenaGit/DailyDoFinal/issues"
+  },
+  "homepage": "https://github.com/DiegoMenaGit/DailyDoFinal#readme",
+  "dependencies": {
+    "electron": "^24.2.0",
+    "jquery": "^3.6.4"
+  }
+}
