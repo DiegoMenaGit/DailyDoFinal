@@ -1,3 +1,5 @@
+const db = firebase.firestore();
+
 var sumar_horas = document.querySelector(".mas")
 var restar_horas = document.querySelector(".menos")
 var contenedor_horas = document.querySelector(".horas_container")
@@ -5,9 +7,11 @@ var fondo = document.querySelector(".fondo")
 var ciclos = document.querySelector(".ciclos")
 var particulas = document.querySelector(".particulas")
 var send_button = document.querySelector(".send_button")
+var fecha_input = document.querySelector(".fecha_input")
 
 var volver = document.querySelector(".volver")
 
+var hora_interna = 8;
 var grados = 0;
 var opacidad = 1;
 var horasTotales = -1200;
@@ -31,6 +35,7 @@ sumar_horas.addEventListener("click", (e)=>{
     if(horasTotales <= -75){
         horasTotales -= -75;
         grados += 15;
+        hora_interna += 1;
         fondo.style.rotate = `${grados}deg`
         ciclos.style.rotate = `${grados}deg`
         contenedor_horas.style.transform = `translateY(${horasTotales}px)`;
@@ -52,6 +57,7 @@ restar_horas.addEventListener("click", (e)=>{
     if(horasTotales >= -1725){
     grados -= 15;
     horasTotales -= 75;
+    hora_interna -= 1;
     fondo.style.rotate = `${grados}deg`
     ciclos.style.rotate = `${grados}deg`
     console.log(horasTotales)
@@ -66,10 +72,40 @@ volver.addEventListener("click", (e)=>{
     window.location.href ="../index.html";
 })
 
-send_button.addEventListener("click", (e)=>{
-    console.log("enviando...")
-    //window.location.href = "";
-})
+firebase.auth().onAuthStateChanged(async function (user) {
+    if (user) {
+      var uid = user.uid;
+      var email = user.email;
+      console.log(`${uid} y ${email}`);
+        send_button.addEventListener("click", (e)=>{
+            console.log("enviando...")
+            console.log(`${fecha_input.value} ${hora_interna} ${uid}`)
+            save_dormir(uid, hora_interna, fecha_input.value)
+            //window.location.href = "";
+        })
+    } else {
+      console.log("El usuario no está logueado");
+    }
+  });
+
+  const save_dormir = (userid, horas, fecha) => {
+    // Consulta Firestore para buscar un documento que coincida con el `userid` y la `fecha`
+    db.collection("dormir").where("userid", "==", userid).where("fecha", "==", fecha).get()
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          // Si se encuentra un documento existente, actualiza los datos
+          const docRef = querySnapshot.docs[0].ref;
+          return docRef.update({horas});
+        } else {
+          // Si no se encuentra un documento existente, crea uno nuevo
+          return db.collection("dormir").doc().set({userid, horas, fecha});
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
+      });
+  };
+  
 
 particlesJS("particle", {
     "particles": {
