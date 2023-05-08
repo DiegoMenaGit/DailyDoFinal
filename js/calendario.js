@@ -24,10 +24,11 @@ conseguirMes();
 
 function conseguirMes(){
     console.log(mesActual)
-    if(mesActual <= 0){
-        mesActual = 12;
-    } else if (mesActual > 12) {
-        mesActual = 1;
+    if(mesActual >=13){
+        mesActual = fechaActual.getMonth() +1;
+    }
+    else if (mesActual <= 0){
+        mesActual = fechaActual.getMonth() +1;
     }
     titulo_mes.innerHTML = meses[mesActual - 1];
 }
