@@ -4,6 +4,9 @@ var contenedor_horas = document.querySelector(".horas_container")
 var fondo = document.querySelector(".fondo")
 var ciclos = document.querySelector(".ciclos")
 var particulas = document.querySelector(".particulas")
+var send_button = document.querySelector(".send_button")
+
+var volver = document.querySelector(".volver")
 
 var grados = 0;
 var opacidad = 1;
@@ -57,6 +60,15 @@ restar_horas.addEventListener("click", (e)=>{
     else{
         console.log("no se puede")
     }
+})
+
+volver.addEventListener("click", (e)=>{
+    window.location.href ="../index.html";
+})
+
+send_button.addEventListener("click", (e)=>{
+    console.log("enviando...")
+    //window.location.href = "";
 })
 
 particlesJS("particle", {
@@ -171,22 +183,12 @@ particlesJS("particle", {
   });
   
   
-  /* ---- stats.js config ---- 
+  window.addEventListener("load", () => {
+    const loader = document.querySelector(".loader");
   
-  var count_particles, stats, update;
-  stats = new Stats;
-  stats.setMode(0);
-  stats.domElement.style.position = 'absolute';
-  stats.domElement.style.left = '0px';
-  stats.domElement.style.top = '0px';
-  document.body.appendChild(stats.domElement);
-  count_particles = document.querySelector('.js-count-particles');
-  update = function() {
-    stats.begin();
-    stats.end();
-    if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-      count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-    }
-    requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update);*/
+    loader.classList.add("loader-hidden");
+  
+    loader.addEventListener("transitioned", () => {
+      document.body.removeChild("loader");
+    });
+  });

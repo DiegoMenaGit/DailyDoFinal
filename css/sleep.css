@@ -131,7 +131,6 @@ body{
     height: 100px;
     width: 100px;
     font-size: 40px;
-    
     overflow: hidden;
     
 }
@@ -238,11 +237,72 @@ body{
     transform: scale(2.4) translateX(20px) translateY(10px);
   }
 
+  .send_button_container{
+    display: flex;
+    bottom: 40px;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    height: 40px;
+    width: 100vw;
+    z-index: 300;
+  }
+
+  .send_button{
+    height: 40px;
+    background-color: antiquewhite;
+    width: 40px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
 @media only screen and (max-width:2100px){
     
     .fondo{
         transition: 200ms;
         transform: scale(15);
+    }
+}
+
+.loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(37, 37, 37);
+    transition: opacity 0.75s, visibility 0.75s;
+    z-index: 1000;
+}
+
+.loader-hidden{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after{
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-radius: 0%;
+    border-top-color: #00ffe7;
+    animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading{
+    from{
+        transform: rotate(0turn);
+    }
+    to{
+        transform: rotate(1turn)
     }
 }
 

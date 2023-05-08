@@ -17,6 +17,7 @@ var button__form = document.querySelector(".button__form");
 var sidebar__button = document.querySelector(".sidebar__button");
 var sidebar = document.querySelector(".sidebar");
 var logout = document.querySelector(".logout");
+var sleep = document.querySelector(".sleep");
 
 var header = document.querySelector(".header");
 var image = document.querySelector(".image_logo2");
@@ -78,6 +79,9 @@ signiUP.addEventListener("click", () => {
   console.log("Clicker");
   window.location.href = "./html/login.html";
 });
+sleep.addEventListener("click", ()=>{
+  window.location.href ="./html/sleep.html"
+})
 
 firebase.auth().onAuthStateChanged(async function (user) {
   var nameuser = "Default";
