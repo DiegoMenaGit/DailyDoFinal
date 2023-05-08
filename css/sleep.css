@@ -11,7 +11,20 @@ body{
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    overflow-x: hidden;
 }
+
+.particulas{
+    transition: 1s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index:  10;
+    opacity: 1;
+}
+
 
 .fondo{
     height: 100vh;
@@ -21,6 +34,8 @@ body{
     background: linear-gradient(rgb(19, 10, 19),rgb(30, 16, 30), rgb(113, 46, 116),rgb(237, 140, 49) ,rgb(31, 133, 223),rgb(31, 133, 223), rgb(31, 133, 223));
     position: absolute;
     transform: scale(10);
+    rotate: 0deg;
+    transition: 200ms;
    
     animation: spin 9s linear infinite;
     z-index: 1;
@@ -32,6 +47,7 @@ body{
 }
 
 .ciclos{
+    transition: 1s;
     height: 200vh;
     width: 100vw;
     position: absolute;
@@ -41,6 +57,7 @@ body{
     text-align: center;
     font-size: 200px;
     z-index: 20;
+    rotate: 0deg;
 
     animation: spin 9s linear infinite;
 }
@@ -73,13 +90,14 @@ body{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
-    background-color: red;
+    background-color: rgba(0, 0, 51, 0.9);
+    color: white;
+    font-size: 24px;
     width: 300px;
     height: 500px;
     text-align: center;
 }
 .form__div1{
-
     display: grid;
     grid-template-rows: 1fr 2fr;
     grid-template-columns: 1fr;
@@ -88,12 +106,45 @@ body{
 }
 
 .form__div1__div2{
-    padding: 30px;
+    padding: 0 30px 0 30px;
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: 1fr;
     justify-content: center;
     align-items: center;
+}
+
+.form__div1__div2__div1__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__div1__div2__div1{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: beige;
+    text-align: center;
+    padding: 0 ;
+    border-radius: 10px;
+    height: 100px;
+    width: 100px;
+    font-size: 40px;
+    
+    overflow: hidden;
+    
+}
+
+.horas_container{
+    transition: 100ms;
+    transform: translateY(-1200px);
+}
+
+.horas{
+    color: rgb(0, 0, 0);
+    margin: 25px 0 0 0;
+    height: 50px;
 }
 
 .form__div1__div2__div2{
@@ -102,6 +153,58 @@ body{
     grid-template-rows: 1fr 1fr;
     justify-content: center;
     align-items: center;
+    padding: 0 10px 0 10px;
+
+}
+
+.form__div1__div2__div2__buttoncontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton{
+    transition: 100ms;
+    background-color: aliceblue;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 0;
+    margin: 10px 0 10px 0;
+    height: 40px;
+    width: 40px;
+}
+
+.boton:active{
+    transition: 100ms;
+    transform: scale(0.7);
+    background-color: antiquewhite;
+    /*height: 30px;
+    width: 30px;*/
+}
+
+.form__div2{
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__div2__div2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.fecha_input{
+    height: 90px;
+    width: 100%;
+    font-size: 17px;
+    padding: 0 30px 0 30px;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    border: 0;
 }
 
 /*.form__container:active{
@@ -143,7 +246,7 @@ body{
     }
 }
 
-
+/*
 @keyframes spin {
     from {
      rotate: 0deg;
@@ -152,4 +255,4 @@ body{
       rotate: 360deg;
     }
   }
-  
+  */

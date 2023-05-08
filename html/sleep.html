@@ -11,6 +11,7 @@
     <div class="volver">
         <img class="image_logo2" src="../media/LOGO.PNG" alt="DailyDo">
     </div>
+    <div id="particle" class="particulas"></div>
     <div class="fondo">
         
     </div>
@@ -29,20 +30,37 @@
                 <label>Horas Dormidas</label>
             </div>
             <div class="form__div1__div2">
-                <div class="form__div1__div2__div1">
-                <input type="text" required>
+                <div class="form__div1__div2__div1__container">
+                    <div class="form__div1__div2__div1">
+                        <div class="horas_container">
+                           
+                        </div>
+                    </div>
                 </div>
                 <div class="form__div1__div2__div2">
-                    <button>+</button>
-                    <button>-</button>
+                    <div class="form__div1__div2__div2__buttoncontainer">
+                        <button class="boton mas">+</button>
+                    </div>
+                    <div class="form__div1__div2__div2__buttoncontainer">
+                        <button class="boton menos">-</button>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="form__div2">
-
+            <div class="form__div2__div1">
+                <p>Dia actual</p>
+            </div>
+            <div class="form__div2__div2">
+                <div class="fecha_input_container">
+                    <input id="fecha" class="fecha_input" type="date" >
+                </div>
+            </div>
         </div>
         </div>
     </div>
+    <script src="../js/particles.min.js"></script>
     <script src="../js/sleep.js"></script>
+    
 </body>
 </html>
