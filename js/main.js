@@ -7,6 +7,8 @@ const input_titulo = document.getElementById("form_titulo");
 const input_desc = document.getElementById("textarea");
 const db = firebase.firestore();
 
+var calendario = document.querySelector(".calendario")
+
 const titol = document.querySelector(".article__section__h1");
 
 let progress = document.getElementById("progressbar");
@@ -82,7 +84,9 @@ signiUP.addEventListener("click", () => {
 sleep.addEventListener("click", ()=>{
   window.location.href ="./html/sleep.html"
 })
-
+calendario.addEventListener("click", ()=>{
+  window.location.href ="./html/calendario.html"
+})
 firebase.auth().onAuthStateChanged(async function (user) {
   var nameuser = "Default";
   if (user) {

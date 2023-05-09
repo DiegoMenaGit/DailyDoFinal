@@ -167,6 +167,69 @@ body{
     color: wheat;
   }
 
+  .dormirBien{
+    background-color: chartreuse;
+  }
+
+  .dormirMasOMenos{
+    background-color: yellow;
+  }
+
+  .dormirMal{
+    background-color: red;
+  }
+
+  .volver {
+    z-index: 5000;
+    left: 40px;
+    width: 80px;
+    height: 6vw;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .image_logo2 {
+    transition: 200ms;
+    width: 13vw;
+    height: 6vw;
+  }
+  
+  .image_logo2:hover {
+    transition: 200ms;
+    cursor: pointer;
+  }
+  .loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(37, 37, 37);
+    transition: opacity 0.75s, visibility 0.75s;
+    z-index: 1000;
+}
+
+.loader-hidden{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after{
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-radius: 0%;
+    border-top-color: #00ffe7;
+    animation: loading 0.75s ease infinite;
+}
+
 @media only screen and (max-width:720px){
     .titulo_mes{
         font-size: 20px;

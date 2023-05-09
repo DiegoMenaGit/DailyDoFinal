@@ -81,7 +81,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
             console.log("enviando...")
             console.log(`${fecha_input.value} ${hora_interna} ${uid}`)
             save_dormir(uid, hora_interna, fecha_input.value)
-            //window.location.href = "";
+            window.location.href = "../html/calendario.html";
         })
     } else {
       console.log("El usuario no está logueado");
