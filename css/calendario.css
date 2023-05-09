@@ -164,18 +164,21 @@ body{
     cursor: pointer;
   }
   .mensaje{
-    color: wheat;
+    color: black;
   }
 
   .bien{
     background-color: rgb(64, 240, 108);
+    color: black;
   }
 
   .muymal{
+    color: black;
     background-color: rgb(215, 51, 40);
   }
 
   .mal{
+    color: black;
     background-color: rgb(235, 210, 45);
   }
 

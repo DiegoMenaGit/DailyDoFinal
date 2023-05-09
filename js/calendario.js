@@ -35,12 +35,13 @@ window.addEventListener("load", () => {
   });
 
 volver.addEventListener("click", () => {
-    window.location.href = "../index.html";
+    window.location.href = "../html/sleep.html";
   });
 
 document.addEventListener('mousemove', e => {
     
     modalContent.addEventListener("mouseleave", (e)=>{
+        modalContent.classList.remove(e.target.classList[1]);
         modalContent.style.setProperty("rotate", "360");
         modalContent.style.setProperty("transform", "scale(0) rotate(360deg)");
         activo = true;
@@ -132,6 +133,7 @@ async function onAuthStateChangedHandler(user, fechadeldia, elemento) {
             elemento.classList.add("bien")
             console.log("igual a 8")
         }
+        return horas;
       });
     } else {
       console.log("El usuario no está logueado");
@@ -164,10 +166,10 @@ async function creardias(fechaString){
           }
           await new Promise((resolve, reject) => {
             firebase.auth().onAuthStateChanged(user => {
-              onAuthStateChangedHandler(user, fechaDelDia, diaElement);
+              horas = onAuthStateChangedHandler(user, fechaDelDia, diaElement);
               resolve();
             });
-          });
+          })
           diaPElement.innerText = fechaDelDia; // set the day number as the text content of the paragraph element
           diaElement.appendChild(diaPElement); // append the paragraph element to the day element
           diaElement.classList.add("dia"); // add the "dia" class to the day element
@@ -176,6 +178,7 @@ async function creardias(fechaString){
             mensaje.innerHTML = (e.target.innerHTML)
             modalContent.style.setProperty("transform", "scale(1)")
             modalContent.style.setProperty("z-index", "800");
+            modalContent.classList.add(e.target.classList[1]);
             activo = false
           });
           mes.appendChild(diaElement); // append the day element to the month element
