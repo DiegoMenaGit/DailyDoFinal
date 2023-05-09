@@ -8,7 +8,7 @@ const BOMBS_NORMAL = 15;
 
 const ROWS_HARD = 20;
 const COLS_HARD = 20;
-const BOMBS_HARD = 20;
+const BOMBS_HARD = 50;
 
 var ROWS = ROWS_NORMAL;
 var COLS = COLS_NORMAL;

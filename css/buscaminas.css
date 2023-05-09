@@ -17,10 +17,11 @@ body{
     background-color: rgba(255, 35, 185, 0.3);
 }
 
-.titulo{
-    
+.titulo{ 
+    position: absolute;
     text-align: center;
-    padding: 90px;
+    top: 30px;
+    padding:  90px 0 0 0;
 }
 
 .gameBoard_container{
@@ -33,6 +34,7 @@ body{
 }
 .centro{
     display: flex;
+    height: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -100,6 +102,7 @@ table {
 
 td {
 	width: 30px;
+    min-width: 30px;
 	height: 30px;
 	border: 1px solid black;
 	text-align: center;
