@@ -7,17 +7,26 @@
 
 body{
     height: 100vh;
-    width: 100vw;
-    background-color: antiquewhite;
+    width: 100vw; 
+    overflow: hidden;
+    overflow-x: hidden;
+    background: linear-gradient(rgba(30, 16, 30, 1),rgb(106, 55, 106));
 }
 
+
+
+
 .titulo_mes_contenedor{
-    height: 100px;
+    position: absolute;
+    width: 100%;
+    height: 6vw;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: rgba(255, 35, 185, 0.3);
+    color: white;
+    background-color: #283355;
+    z-index: 900;
 }
 
 .titulo_mes{
@@ -30,23 +39,24 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    top: 50px;
 }
 
 .calendario{
     position: absolute;
     display: flex;
-    height: 90vh;
+    height: 80vh;
     width: 90vw;
     flex-direction: column;
-    z-index: 100;
+    z-index: 250;
 }
 
 .semana{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
-    background-color: red;
+    background-color: #53426f;
+    color:azure;
     height: 40px;
     width: 100%;
     text-align: center;
@@ -57,7 +67,7 @@ body{
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
-    background-color: rgb(255, 35, 185);
+    background-color: rgba(145, 89, 142, 0.5);
     width: 100%;
     height: 100%;
     text-align: center;
@@ -66,15 +76,23 @@ body{
 }
 
 .dia{
+    transition: 100ms;
     position: relative;
-    background-color: aqua;
+    background-color: rgba(145, 89, 142, 0.6);
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    cursor: pointer;
     z-index: 300;
+}
+.dia:active{
+    transition: 200ms;
+    background-color: rgba(255, 169, 202, 1);
+    transform: scale(1.3);
+    z-index: 310;
 }
 
 .botones{
@@ -84,7 +102,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    z-index: 500;
+    z-index: 200;
 }
 
 .boton{
@@ -98,7 +116,87 @@ body{
     align-items: center;
 }
 
+
+
 .boton:active{
     transition: 200ms;
     transform: scale(0.8);
+}
+
+.boton_container1 {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    padding: 0;
+  }
+  
+  .boton1 {
+    position: absolute;
+    left: 0;
+  }
+  
+  .boton2 {
+    position: absolute;
+    right: 0;
+  }
+
+  .invisible{
+    display: none;
+  }
+
+  .modal{
+    z-index: 20;
+  }
+  .modal-content {
+    transition: transform 300ms;
+    position: fixed;
+    border-radius: 12px;
+    background-color: rgba(57, 28, 55, 1);
+    opacity: 1;
+    transform: scale(0);
+    z-index: 80;
+    height: 300px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+  }
+  .mensaje{
+    color: wheat;
+  }
+
+@media only screen and (max-width:720px){
+    .titulo_mes{
+        font-size: 20px;
+    }
+    
+    .calendario{
+        transition: 20ms;
+        position: absolute;
+        display: flex;
+        height: 60vh;
+        width: 70vw;
+        flex-direction: column;
+        z-index: 250;
+    }
+    
+    .semana{
+        font-size: 10px;
+    }
+    
+    .dia{
+        transition: 100ms;
+        padding: 0 0 0 0;
+    }
+}
+
+@keyframes spin {
+    from {
+     rotate: 0deg;
+    }
+    to {
+      rotate: 360deg;
+    }
 }
