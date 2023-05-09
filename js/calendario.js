@@ -1,5 +1,6 @@
 var mes = document.querySelector(".mes");
 
+var db = firebase.firestore();
 var volver = document.querySelector(".volver");
 var mensaje = document.querySelector(".mensaje")
 var modal = document.querySelector(".modal")
@@ -19,7 +20,8 @@ var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Ag
 var activo = true;
 var botonizq = document.querySelector(".boton1")
 var botonder = document.querySelector(".boton2")
-creardias();
+var fechaString = fechaActual.toISOString().substring(0, 8);
+creardias(fechaString);
 conseguirMes();
 
 window.addEventListener("load", () => {
@@ -38,11 +40,7 @@ volver.addEventListener("click", () => {
 
 document.addEventListener('mousemove', e => {
     
-    modalContent.addEventListener("mouseenter", (e)=>{
-        console.log("dentro")
-    })
     modalContent.addEventListener("mouseleave", (e)=>{
-        console.log("fuera")
         modalContent.style.setProperty("rotate", "360");
         modalContent.style.setProperty("transform", "scale(0) rotate(360deg)");
         activo = true;
@@ -81,8 +79,10 @@ botonder.addEventListener("click", (e)=>{
     ultimoDiaMes = fechaActual.getDate();
     primerDiaMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), 1);
     primerDiaSemana = primerDiaMes.getDay(); 
+
+    fechaString = fechaActual.toISOString().substring(0, 8);
     conseguirMes();
-    creardias();
+    creardias(fechaString);
 })
 
 botonizq.addEventListener("click", (e)=>{
@@ -90,42 +90,57 @@ botonizq.addEventListener("click", (e)=>{
     contadorDias= 0;
      mes.innerHTML = "";
      fechaActual = new Date()
-    mesActual = fechaActual.getMonth()  + clicker;// guardar el mes actual en una variable
+    mesActual = fechaActual.getMonth() + clicker;// guardar el mes actual en una variable
     fechaActual.setMonth(mesActual); // sumar un mes a la fecha actual
     fechaActual.setDate(0); // establecer la fecha al último día del mes anterior
     ultimoDiaMes = fechaActual.getDate();
     primerDiaMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), 1);
-    primerDiaSemana = primerDiaMes.getDay(); 
-    
+    primerDiaSemana = primerDiaMes.getDay();
+
+    fechaString = fechaActual.toISOString().substring(0, 8);
     conseguirMes();
-    creardias();
+    creardias(fechaString);
 })
 
-/*
-function creardias(){
-    //console.log("dia de la semana"+primerDiaSemana)
-    for(let i = 1; i <= 40; i++){
-        if(primerDiaSemana == 0){
-            primerDiaSemana = 7
+async function onAuthStateChangedHandler(user, fechadeldia, elemento) {
+   // console.log(fechadeldia);
+    if (user) {
+      var uid = user.uid;
+      var email = user.email;
+      console.log(`${uid} y ${email}`);
+      var fechaFirebase = new Date();
+      fechaString = fechaFirebase.toISOString().substring(0, 8);
+      const querySnapshot = await getDormir().where("userid", "==", uid).where("fecha", "==", fechadeldia).get();
+      querySnapshot.forEach((doc) => {
+        var fecha = doc.data().fecha;
+        var horas = doc.data().horas;
+        console.log(fecha, fechadeldia)
+        if(horas <= 3){
+            elemento.classList.add("muymal")
         }
-        if(i < primerDiaSemana){
-            //console.log("hola")
-            mes.innerHTML += `<div class="dia"><p class="dia_p"></p></div>`;
+        else if(horas >= 4 && horas <= 7){
+            elemento.classList.add("mal")
+        }
+        else if(horas > 9 && horas < 14){
+            elemento.classList.add("mal")
+            console.log("Mayor a 8")
+        }
+        else if(horas >= 14){
+            elemento.classList.add("muymal")
         }
         else{
-            contadorDias++
-            if(contadorDias > ultimoDiaMes){
-              //  console.log("ya esta")
-            }
-            else{
-                mes.innerHTML += `<div class="dia"><p class="dia_p">${contadorDias}</p></div>`;
-            }
+            elemento.classList.add("bien")
+            console.log("igual a 8")
         }
+      });
+    } else {
+      console.log("El usuario no está logueado");
     }
-    
-}*/
+  }
+  
+  
 
-function creardias(){
+async function creardias(fechaString){
     for(let i = 1; i <= 40; i++){
       if(primerDiaSemana == 0){
         primerDiaSemana = 7
@@ -141,7 +156,19 @@ function creardias(){
         else{
           const diaElement = document.createElement("div"); // create the day element
           const diaPElement = document.createElement("p"); // create the paragraph element inside the day element
-          diaPElement.innerText = contadorDias; // set the day number as the text content of the paragraph element
+          if(contadorDias <= 9){
+            var fechaDelDia = fechaString+"0"+contadorDias;  
+          }
+          else{
+          var fechaDelDia = fechaString+contadorDias;
+          }
+          await new Promise((resolve, reject) => {
+            firebase.auth().onAuthStateChanged(user => {
+              onAuthStateChangedHandler(user, fechaDelDia, diaElement);
+              resolve();
+            });
+          });
+          diaPElement.innerText = fechaDelDia; // set the day number as the text content of the paragraph element
           diaElement.appendChild(diaPElement); // append the paragraph element to the day element
           diaElement.classList.add("dia"); // add the "dia" class to the day element
           diaElement.addEventListener("click", (e) => { // add a click event listener to the day element
@@ -152,13 +179,10 @@ function creardias(){
             activo = false
           });
           mes.appendChild(diaElement); // append the day element to the month element
+          
         }
       }
     }
   }
+  const getDormir = () => db.collection("dormir");
 
-/*modal2.addEventListener("click", function (e) {
-    if (e.target === modal) {
-      modal2.style.display = "none";
-    }
-});*/

@@ -167,16 +167,16 @@ body{
     color: wheat;
   }
 
-  .dormirBien{
-    background-color: chartreuse;
+  .bien{
+    background-color: rgb(64, 240, 108);
   }
 
-  .dormirMasOMenos{
-    background-color: yellow;
+  .muymal{
+    background-color: rgb(215, 51, 40);
   }
 
-  .dormirMal{
-    background-color: red;
+  .mal{
+    background-color: rgb(235, 210, 45);
   }
 
   .volver {

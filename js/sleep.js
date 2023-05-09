@@ -77,16 +77,25 @@ firebase.auth().onAuthStateChanged(async function (user) {
       var uid = user.uid;
       var email = user.email;
       console.log(`${uid} y ${email}`);
-        send_button.addEventListener("click", (e)=>{
+        send_button.addEventListener("click", async (e)=>{
             console.log("enviando...")
             console.log(`${fecha_input.value} ${hora_interna} ${uid}`)
             save_dormir(uid, hora_interna, fecha_input.value)
-            window.location.href = "../html/calendario.html";
+            db.collection("dormir")
+            .get()
+            .then(() => {
+              setTimeout(()=>{
+                window.location.href = "../html/calendario.html";
+              }, 1000)
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         })
     } else {
       console.log("El usuario no está logueado");
     }
-  });
+});
 
   const save_dormir = (userid, horas, fecha) => {
     // Consulta Firestore para buscar un documento que coincida con el `userid` y la `fecha`
