@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Buscaminas</title>
+	<link rel="stylesheet" href="../css/buscaminas.css">
+</head>
+<body>
+    <div class="explosion">
+        <img class="imagen_exp" src="../media/boooom.gif" alt="BOOOOOOOOOM">
+        <img class="imagen_exp" src="../media/boooom.gif" alt="BOOOOOOOOOM">
+        <img class="imagen_exp" src="../media/boooom.gif" alt="BOOOOOOOOOM">
+    </div>
+    <div class="gameBoard_container">
+       
+        
+        <div class="board">
+            <div class="frutas">
+                <div>🍎 = 0</div>
+                <div>🍌 = 1</div>
+                <div>🍓 = 2</div>
+            </div>
+            <div class="centro">
+            <h1 class="titulo">BuscaFrutas</h1>
+            <div class="jugar">
+                <div class="boton facil"><p>Facil</p></div>
+                <div class="boton normal"><p>Normal</p></div>
+                <div class="boton dificil"><p>Dificil</p></div>
+                <div class="boton boton_jugar"><p>Jugar</p></div>
+            </div>
+	        <table id="gameBoard"></table>
+            </div>
+            <div class="frutas">
+                <div>🍍 = 3</div>
+                <div>🍈 = 4</div>
+                <div>💣 = bomb</div>
+            </div>
+        </div>
+            
+        
+    </div>
+	<script src="../js/buscaminas.js"></script>
+</body>
+</html>
