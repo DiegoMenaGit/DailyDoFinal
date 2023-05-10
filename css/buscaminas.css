@@ -5,16 +5,24 @@
 }
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: linear-gradient(rgb(44, 175, 193),rgb(169, 229, 243));
 }
 
 .board{
+    transition: 100ms;
     width: 60vw;
     height: 80vh;
+    border-radius: 20px;
     display: grid;
     justify-content: center;
     align-items: center;
     grid-template-columns: 1fr 4fr 1fr;
-    background-color: rgba(255, 35, 185, 0.3);
+    background-color: rgba(250, 138, 1, 0.481);
+}
+
+.board:hover{
+    transition: 100ms;
+    background-color: rgba(250, 138, 1, 0.881);
 }
 
 .titulo{ 
@@ -41,12 +49,35 @@ body{
 }
 .frutas{
     display: grid;
+    font-size: 20px;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     justify-content: center;
     text-align: center;
     align-items: center;
     height: 100%;
+}
+
+.pararAudioContainer{
+    position: absolute;
+    display: flex;
+    justify-content: end;
+    padding: 20px;
+    width: 100vw;
+    height: 100px;
+}
+
+.pararAudio{
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+    border-radius: 40px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
 }
 
 #gameBoard{
@@ -71,7 +102,6 @@ body{
 
 
 .jugar{
-
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     height: 20vh;
@@ -80,9 +110,10 @@ body{
 .boton{
     display: flex;
     align-items: center;
+    border-radius: 10px;
     height: 30px;
     width:80px;
-    background-color: aqua;
+    background-color: rgb(57, 197, 29);
     padding: 10px;
     cursor: pointer;
 }

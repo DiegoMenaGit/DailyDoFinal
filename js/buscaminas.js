@@ -1,12 +1,12 @@
-const ROWS_EASY = 10;
-const COLS_EASY = 10;
-const BOMBS_EASY = 10;
+const ROWS_EASY = 9;
+const COLS_EASY = 9;
+const BOMBS_EASY = 0;
 
-const ROWS_NORMAL = 15;
-const COLS_NORMAL = 15;
-const BOMBS_NORMAL = 15;
+const ROWS_NORMAL = 16;
+const COLS_NORMAL = 16;
+const BOMBS_NORMAL = 40;
 
-const ROWS_HARD = 20;
+const ROWS_HARD = 18;
 const COLS_HARD = 20;
 const BOMBS_HARD = 50;
 
@@ -14,6 +14,7 @@ var ROWS = ROWS_NORMAL;
 var COLS = COLS_NORMAL;
 var BOMBS = BOMBS_NORMAL;
 
+var boton_paraAudio = document.querySelector(".pararAudio")
 var jugarr = document.querySelector(".jugar")
 var facil = document.querySelector(".facil")
 var normal = document.querySelector(".normal")
@@ -21,9 +22,13 @@ var dificil = document.querySelector(".dificil")
 var jugar = document.querySelector(".boton_jugar")
 var explosion = document.querySelector(".explosion");
 const explosionSound = new Audio("../media/explosion.mp3");
+const congratilationSound = new Audio("../media/tada.mp3");
 const gameBoard = document.getElementById("gameBoard");
+var audio = document.getElementById("myAudio");
 
-
+boton_paraAudio.addEventListener("click", (e)=>{
+  stopAudio();
+})
 
 let board = [];
 let bombCount = 0;
@@ -104,6 +109,10 @@ const fruitMap = {
     2: "🍓",
     3: "🍍",
     4: "🍈",
+    5: "🍇",
+    6: "🥝",
+    7: "🍑",
+    8: "🥑"
   };
   
   const fruit = fruitMap[board[row][col].value];
@@ -112,7 +121,9 @@ const fruitMap = {
 
   if (board[row][col].bomb) {
     explosion.style.display = "flex";
+    if (!isPlaying) {
     explosionSound.play();
+    }
     setTimeout(() => {
       explosion.style.display = "none";
       location.reload();
@@ -121,8 +132,13 @@ const fruitMap = {
   }
 
 if (revealedCount === ROWS * COLS - BOMBS) {
-//	alert("¡Felicidades! Has ganado.");
+  if (!isPlaying) {
+    stopAudio();
+  congratilationSound.play();
+  }
+  setTimeout(() => {
 	location.reload();
+  }, 1500);
 	return;
 }
 
@@ -158,8 +174,8 @@ facil.addEventListener("click", function() {
     COLS = COLS_EASY;
     BOMBS = BOMBS_EASY;
     facil.style.setProperty("background-color", "red");
-    normal.style.setProperty("background-color", "aqua");
-    dificil.style.setProperty("background-color", "aqua");
+    normal.style.setProperty("background-color", "rgb(57, 197, 29)");
+    dificil.style.setProperty("background-color", "rgb(57, 197, 29)");
     console.log("set on easy")
   });
   
@@ -167,9 +183,9 @@ facil.addEventListener("click", function() {
     ROWS = ROWS_NORMAL;
     COLS = COLS_NORMAL;
     BOMBS = BOMBS_NORMAL;
-    facil.style.setProperty("background-color", "aqua");
+    facil.style.setProperty("background-color", "rgb(57, 197, 29)");
     normal.style.setProperty("background-color", "red");
-    dificil.style.setProperty("background-color", "aqua");
+    dificil.style.setProperty("background-color", "rgb(57, 197, 29)");
     console.log("set on normal")
   });
   
@@ -177,8 +193,8 @@ facil.addEventListener("click", function() {
     ROWS = ROWS_HARD;
     COLS = COLS_HARD;
     BOMBS = BOMBS_HARD;
-    facil.style.setProperty("background-color", "aqua");
-    normal.style.setProperty("background-color", "aqua");
+    facil.style.setProperty("background-color", "rgb(57, 197, 29)");
+    normal.style.setProperty("background-color", "rgb(57, 197, 29)");
     dificil.style.setProperty("background-color", "red");
     console.log("set on hard")
   });
@@ -188,3 +204,18 @@ facil.addEventListener("click", function() {
     gameBoard.style.display = "flex"
     init();
   });
+
+  var isPlaying = true;
+
+  function stopAudio() {
+    if (!isPlaying) {
+      audio.pause();
+      boton_paraAudio.innerHTML = "PLAY";
+      isPlaying = true;
+    } else {
+      audio.play();
+      audio.currentTime = 0;
+      boton_paraAudio.innerHTML = "STOP";
+      isPlaying = false;
+    }
+  }
