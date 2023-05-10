@@ -16,13 +16,15 @@ body{
     display: grid;
     justify-content: center;
     align-items: center;
+    position: absolute;
     grid-template-columns: 1fr 4fr 1fr;
-    background-color: rgba(250, 138, 1, 0.481);
+    background-color: #ffbe0b;
+    z-index: 450;
 }
 
 .board:hover{
     transition: 100ms;
-    background-color: rgba(250, 138, 1, 0.881);
+    background-color: #ffbe0b;
 }
 
 .titulo{ 
@@ -33,6 +35,9 @@ body{
 }
 
 .gameBoard_container{
+    position: absolute;
+    background-color: #168aad;
+    z-index: 300;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -47,15 +52,28 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.nube{
+    position: absolute;
+    transform: scale(0.2);
+    z-index: 20;
+}
+
 .frutas{
     display: grid;
     font-size: 20px;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 20px 0 0 20px;
+    background-color: #fb5607;
     justify-content: center;
     text-align: center;
     align-items: center;
     height: 100%;
+}
+
+.fruta2{
+    border-radius: 0 20px 20px 0;
 }
 
 .pararAudioContainer{
@@ -70,10 +88,10 @@ body{
 .pararAudio{
     width: 100px;
     height: 100px;
-    background-color: orange;
+    background-color: #52b69a;
+    font-size: 40px;
     border-radius: 40px;
     display: flex;
-    text-align: center;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -100,6 +118,28 @@ body{
     transform: scale(4);
 }
 
+.volver {
+    z-index: 5000;
+    left: 40px;
+    width: 80px;
+    height: 6vw;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .image_logo2 {
+    transition: 200ms;
+    width: 13vw;
+    height: 6vw;
+  }
+  
+  .image_logo2:hover {
+    transition: 200ms;
+    cursor: pointer;
+  }
 
 .jugar{
     display: grid;
@@ -108,19 +148,27 @@ body{
 }
 
 .boton{
+    transition: 100ms;
     display: flex;
     align-items: center;
     border-radius: 10px;
-    height: 30px;
-    width:80px;
-    background-color: rgb(57, 197, 29);
+    margin: 30px 0  0;
+    height: 50px;
+    width:500px;
+    background-color: #168aad;
     padding: 10px;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
 }
 
-.boton:hover{
-    background-color: red;
+.boton:active{
+    transition: 100ms;
+    transform: scale(0.7)
+
 }
+
 tbody{
     height: 10;
 }

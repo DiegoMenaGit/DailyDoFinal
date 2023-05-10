@@ -1,19 +1,4 @@
-const ROWS_EASY = 9;
-const COLS_EASY = 9;
-const BOMBS_EASY = 0;
-
-const ROWS_NORMAL = 16;
-const COLS_NORMAL = 16;
-const BOMBS_NORMAL = 40;
-
-const ROWS_HARD = 18;
-const COLS_HARD = 20;
-const BOMBS_HARD = 50;
-
-var ROWS = ROWS_NORMAL;
-var COLS = COLS_NORMAL;
-var BOMBS = BOMBS_NORMAL;
-
+var volver = document.querySelector(".volver");
 var boton_paraAudio = document.querySelector(".pararAudio")
 var jugarr = document.querySelector(".jugar")
 var facil = document.querySelector(".facil")
@@ -25,6 +10,26 @@ const explosionSound = new Audio("../media/explosion.mp3");
 const congratilationSound = new Audio("../media/tada.mp3");
 const gameBoard = document.getElementById("gameBoard");
 var audio = document.getElementById("myAudio");
+
+volver.addEventListener("click", () => {
+  window.location.href = "../index.html";
+});
+
+const ROWS_EASY = 9;
+const COLS_EASY = 9;
+const BOMBS_EASY = 10;
+
+const ROWS_NORMAL = 16;
+const COLS_NORMAL = 16;
+const BOMBS_NORMAL = 40;
+
+const ROWS_HARD = 18;
+const COLS_HARD = 20;
+const BOMBS_HARD = 50;
+
+var ROWS = ROWS_NORMAL;
+var COLS = COLS_NORMAL;
+var BOMBS = BOMBS_NORMAL
 
 boton_paraAudio.addEventListener("click", (e)=>{
   stopAudio();
@@ -173,9 +178,9 @@ facil.addEventListener("click", function() {
     ROWS = ROWS_EASY;
     COLS = COLS_EASY;
     BOMBS = BOMBS_EASY;
-    facil.style.setProperty("background-color", "red");
-    normal.style.setProperty("background-color", "rgb(57, 197, 29)");
-    dificil.style.setProperty("background-color", "rgb(57, 197, 29)");
+    facil.style.setProperty("background-color", "#00ffe7");
+    normal.style.setProperty("background-color", "#fb5607");
+    dificil.style.setProperty("background-color", "#fb5607");
     console.log("set on easy")
   });
   
@@ -183,9 +188,9 @@ facil.addEventListener("click", function() {
     ROWS = ROWS_NORMAL;
     COLS = COLS_NORMAL;
     BOMBS = BOMBS_NORMAL;
-    facil.style.setProperty("background-color", "rgb(57, 197, 29)");
-    normal.style.setProperty("background-color", "red");
-    dificil.style.setProperty("background-color", "rgb(57, 197, 29)");
+    facil.style.setProperty("background-color", "#fb5607");
+    normal.style.setProperty("background-color", "#00ffe7");
+    dificil.style.setProperty("background-color", "#fb5607");
     console.log("set on normal")
   });
   
@@ -193,9 +198,9 @@ facil.addEventListener("click", function() {
     ROWS = ROWS_HARD;
     COLS = COLS_HARD;
     BOMBS = BOMBS_HARD;
-    facil.style.setProperty("background-color", "rgb(57, 197, 29)");
-    normal.style.setProperty("background-color", "rgb(57, 197, 29)");
-    dificil.style.setProperty("background-color", "red");
+    facil.style.setProperty("background-color", "#fb5607");
+    normal.style.setProperty("background-color", "#fb5607");
+    dificil.style.setProperty("background-color", "#00ffe7");
     console.log("set on hard")
   });
   
@@ -210,12 +215,41 @@ facil.addEventListener("click", function() {
   function stopAudio() {
     if (!isPlaying) {
       audio.pause();
-      boton_paraAudio.innerHTML = "PLAY";
+      boton_paraAudio.innerHTML = "🔈";
       isPlaying = true;
     } else {
       audio.play();
       audio.currentTime = 0;
-      boton_paraAudio.innerHTML = "STOP";
+      boton_paraAudio.innerHTML = "🔊";
       isPlaying = false;
     }
   }
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+let interval = null;
+
+document.querySelector("h1").onmouseover = event => {  
+  let iteration = 0;
+  
+  clearInterval(interval);
+  
+  interval = setInterval(() => {
+    event.target.innerText = event.target.innerText
+      .split("")
+      .map((letter,index ) => {
+        if(index < iteration) {
+          return event.target.dataset.value[index];
+        }
+      
+        return letters[Math.floor(Math.random() * 26)]
+      })
+      .join("");
+    
+    if(iteration >= event.target.dataset.value.length){ 
+      clearInterval(interval);
+    }
+    
+    iteration += 1 / 3;
+  }, 30);
+}
+
