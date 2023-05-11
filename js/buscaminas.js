@@ -1,4 +1,5 @@
 var volver = document.querySelector(".volver");
+var titulo = document.querySelector(".titulo");
 var boton_paraAudio = document.querySelector(".pararAudio")
 var jugarr = document.querySelector(".jugar")
 var facil = document.querySelector(".facil")
@@ -40,6 +41,7 @@ let bombCount = 0;
 let revealedCount = 0;
 
 function init() {
+  titulo.style.setProperty("top", "-70px");
 	for (let i = 0; i < ROWS; i++) {
 		board[i] = [];
 		for (let j = 0; j < COLS; j++) {
@@ -252,3 +254,13 @@ document.querySelector("h1").onmouseover = event => {
     iteration += 1 / 3;
   }, 30);
 }
+
+window.addEventListener("load", () => {
+  const loader = document.querySelector(".loader");
+
+  loader.classList.add("loader-hidden");
+
+  loader.addEventListener("transitioned", () => {
+    document.body.removeChild("loader");
+  });
+});

@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 *{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -187,7 +188,7 @@ body{
   .volver {
     z-index: 5000;
     left: 0vw;
-    width: 13vw;
+    width: 10vw;
     height: 6vw;
     position: absolute;
     display: flex;
@@ -233,6 +234,15 @@ body{
     border-radius: 0%;
     border-top-color: #00ffe7;
     animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 @media only screen and (max-width:720px){
