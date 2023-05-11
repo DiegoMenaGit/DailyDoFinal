@@ -13,7 +13,7 @@ const gameBoard = document.getElementById("gameBoard");
 var audio = document.getElementById("myAudio");
 
 volver.addEventListener("click", () => {
-  window.location.href = "../index.html";
+  window.location.href = "../html/menuJuegos.html";
 });
 
 const ROWS_EASY = 9;

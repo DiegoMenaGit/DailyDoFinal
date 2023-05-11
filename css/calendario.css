@@ -11,7 +11,7 @@ body{
     width: 100vw; 
     overflow: hidden;
     overflow-x: hidden;
-    background: linear-gradient(rgba(30, 16, 30, 1),rgb(106, 55, 106));
+    background: linear-gradient(rgb(37, 37, 37), rgb(22, 22, 22));
 }
 
 

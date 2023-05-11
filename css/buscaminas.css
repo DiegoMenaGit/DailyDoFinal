@@ -39,7 +39,7 @@ body{
 
 .gameBoard_container{
     position: absolute;
-    background-color: #81d8c8;
+    background: linear-gradient(rgb(37, 37, 37), rgb(22, 22, 22));
     z-index: 300;
     width: 100vw;
     height: 100vh;

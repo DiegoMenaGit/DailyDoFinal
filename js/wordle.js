@@ -4,7 +4,13 @@ guessLeft = document.querySelector(".guess-left span"),
 wrongLetter = document.querySelector(".wrong-letter span"),
 resetBtn = document.querySelector(".reset-btn"),
 typingInput = document.querySelector(".typing-input");
+var volver = document.querySelector(".volver")
 let word, maxGuesses, incorrectLetters = [], correctLetters = [];
+
+volver.addEventListener("click", () => {
+    window.location.href = "../html/menuJuegos.html";
+});
+
 function randomWord() {
     let ranItem = wordList[Math.floor(Math.random() * wordList.length)];
     word = ranItem.word;
@@ -43,7 +49,6 @@ function initGame(e) {
             alert(`Congrats! You found the word ${word.toUpperCase()}`);
             return randomWord();
         } else if(maxGuesses < 1) {
-            alert("Game over! You don't have remaining guesses");
             for(let i = 0; i < word.length; i++) {
                 inputs.querySelectorAll("input")[i].value = word[i];
             }

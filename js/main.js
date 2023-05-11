@@ -28,6 +28,7 @@ var foto = document.querySelector(".header__container__foto");
 var sticky = header.offsetTop;
 var imagen = document.querySelector(".article__section__img__2");
 var signiUP = document.querySelector(".signiUP");
+var juegos = document.querySelector(".juegos");
 var ver = imagen.offsetBottom;
 
 function myFunction() {
@@ -86,6 +87,9 @@ sleep.addEventListener("click", ()=>{
 })
 calendario.addEventListener("click", ()=>{
   window.location.href ="./html/calendario.html"
+})
+juegos.addEventListener("click", ()=>{
+  window.location.href ="./html/menuJuegos.html"
 })
 firebase.auth().onAuthStateChanged(async function (user) {
   var nameuser = "Default";
