@@ -234,6 +234,14 @@ body{
     border-top-color: #00ffe7;
     animation: loading 0.75s ease infinite;
 }
+.dia_p_oculto{
+  position: absolute;
+  opacity: 0;
+}
+
+.dia_p{
+  opacity: 1;
+}
 
 @keyframes loading {
   from {

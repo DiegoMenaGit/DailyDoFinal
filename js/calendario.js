@@ -22,7 +22,8 @@ var botonizq = document.querySelector(".boton1")
 var botonder = document.querySelector(".boton2")
 var fechaString = fechaActual.toISOString().substring(0, 8);
 creardias(fechaString);
-conseguirMes();
+var year = fechaString.substring(0, 4);
+conseguirMes(year);
 
 window.addEventListener("load", () => {
     const loader = document.querySelector(".loader");
@@ -42,7 +43,6 @@ volver.addEventListener("click", () => {
 document.addEventListener('mousemove', e => {
     modalContent.addEventListener("mouseleave", (e)=>{
         activo = true;
-        modalActivo(activo);
     })
     if(activo){
       modalContent.classList.remove(e.target.classList[1]);
@@ -57,7 +57,7 @@ document.addEventListener('mousemove', e => {
       }
 });
 
-function conseguirMes(){
+function conseguirMes(year){
     console.log(mesActual)
     if(mesActual >=13){
         mesActual = fechaActual.getMonth() +1;
@@ -65,7 +65,7 @@ function conseguirMes(){
     else if (mesActual <= 0){
         mesActual = fechaActual.getMonth() +1;
     }
-    titulo_mes.innerHTML = meses[mesActual - 1];
+    titulo_mes.innerHTML = meses[mesActual - 1] + `, ${year}`;
 }
 
 
@@ -87,7 +87,8 @@ function swipeRight(){
     primerDiaSemana = primerDiaMes.getDay(); 
 
     fechaString = fechaActual.toISOString().substring(0, 8);
-    conseguirMes();
+    year = fechaString.substring(0, 4);
+    conseguirMes(year);
     creardias(fechaString);
 }
 
@@ -108,11 +109,12 @@ function swipeLeft(){
   primerDiaSemana = primerDiaMes.getDay();
 
   fechaString = fechaActual.toISOString().substring(0, 8);
-  conseguirMes();
+  year = fechaString.substring(0, 4);
+  conseguirMes(year);
   creardias(fechaString);
 }
 
-async function onAuthStateChangedHandler(user, fechadeldia, elemento) {
+async function onAuthStateChangedHandler(user, fechadeldia, elemento, diaPOcultoElement) {
    // console.log(fechadeldia);
     if (user) {
       var uid = user.uid;
@@ -124,6 +126,9 @@ async function onAuthStateChangedHandler(user, fechadeldia, elemento) {
       querySnapshot.forEach((doc) => {
         var fecha = doc.data().fecha;
         var horas = doc.data().horas;
+        
+        diaPOcultoElement.innerHTML = `${horas}h dormidas`;
+
         console.log(fecha, fechadeldia)
         if(horas <= 3){
             elemento.classList.add("muymal")
@@ -133,14 +138,12 @@ async function onAuthStateChangedHandler(user, fechadeldia, elemento) {
         }
         else if(horas > 9 && horas < 14){
             elemento.classList.add("mal")
-            console.log("Mayor a 8")
         }
         else if(horas >= 14){
             elemento.classList.add("muymal")
         }
         else{
             elemento.classList.add("bien")
-            console.log("igual a 8")
         }
         return horas;
       });
@@ -167,6 +170,7 @@ async function creardias(fechaString){
         else{
           const diaElement = document.createElement("div"); // create the day element
           const diaPElement = document.createElement("p"); // create the paragraph element inside the day element
+          const diaPOcultoElement = document.createElement("p");
           if(contadorDias <= 9){
             var fechaDelDia = fechaString+"0"+contadorDias;  
           }
@@ -175,17 +179,23 @@ async function creardias(fechaString){
           }
           await new Promise((resolve, reject) => {
             firebase.auth().onAuthStateChanged(user => {
-              horas = onAuthStateChangedHandler(user, fechaDelDia, diaElement);
+              horas = onAuthStateChangedHandler(user, fechaDelDia, diaElement, diaPOcultoElement);
               resolve();
             });
           })
           diaPElement.innerText = contadorDias; // set the day number as the text content of the paragraph element
           diaElement.appendChild(diaPElement); // append the paragraph element to the day element
+          diaElement.appendChild(diaPOcultoElement)
           diaElement.classList.add("dia"); // add the "dia" class to the day element
-          diaPElement.classList.add("dia_p")
+          diaPElement.classList.add("dia_p");
+          diaPOcultoElement.classList.add("dia_p_oculto");
           diaElement.addEventListener("click", (e) => { // add a click event listener to the day element
-            console.log("Clicked on day", e.target.innerText);
-            mensaje.innerHTML = (e.target.innerHTML)
+            console.log("Clicked on day", e.currentTarget.querySelector(".dia_p").innerText);
+            mensaje.innerHTML = `
+  Dia:<br>
+  <span >${e.currentTarget.querySelector('.dia_p').innerText}</span><br>
+  <span >${e.currentTarget.querySelector('.dia_p_oculto').innerText}</span>
+`;
             modalContent.style.setProperty("transform", "scale(1)")
             modalContent.style.setProperty("z-index", "800");
             modalContent.classList.add(e.target.classList[1]);
