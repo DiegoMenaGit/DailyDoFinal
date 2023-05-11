@@ -91,7 +91,6 @@ body{
     z-index: 300;
 }
 .dia:active{
-    
     transition: 200ms;
     background-color: rgba(255, 169, 202, 1);
     transform: scale(1.3);

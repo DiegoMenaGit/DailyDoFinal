@@ -37,23 +37,24 @@ window.addEventListener("load", () => {
 volver.addEventListener("click", () => {
     window.location.href = "../html/sleep.html";
   });
-
+  
+  
 document.addEventListener('mousemove', e => {
-    
     modalContent.addEventListener("mouseleave", (e)=>{
-        modalContent.classList.remove(e.target.classList[1]);
-        modalContent.style.setProperty("rotate", "360");
-        modalContent.style.setProperty("transform", "scale(0) rotate(360deg)");
         activo = true;
+        modalActivo(activo);
     })
     if(activo){
-    const modalWidth = modalContent.offsetWidth;
-    const modalHeight = modalContent.offsetHeight;
-    const leftOffset = (modalWidth / 2);
-    const topOffset = (modalHeight / 2);
-    modalContent.style.left = (e.clientX - leftOffset) + 'px';
-    modalContent.style.top = (e.clientY - topOffset) + 'px';
-    }
+      modalContent.classList.remove(e.target.classList[1]);
+      modalContent.style.setProperty("rotate", "360");
+      modalContent.style.setProperty("transform", "scale(0) rotate(360deg)");
+      const modalWidth = modalContent.offsetWidth;
+      const modalHeight = modalContent.offsetHeight;
+      const leftOffset = (modalWidth / 2);
+      const topOffset = (modalHeight / 2);
+      modalContent.style.left = (e.clientX - leftOffset) + 'px';
+      modalContent.style.top = (e.clientY - topOffset) + 'px';
+      }
 });
 
 function conseguirMes(){
