@@ -70,7 +70,11 @@ function conseguirMes(){
 
 
 botonder.addEventListener("click", (e)=>{
-    clicker++
+    swipeRight();
+})
+
+function swipeRight(){
+  clicker++
     contadorDias= 0;
      mes.innerHTML = "";
      fechaActual = new Date()
@@ -84,24 +88,28 @@ botonder.addEventListener("click", (e)=>{
     fechaString = fechaActual.toISOString().substring(0, 8);
     conseguirMes();
     creardias(fechaString);
-})
+}
 
 botonizq.addEventListener("click", (e)=>{
-    clicker--
-    contadorDias= 0;
-     mes.innerHTML = "";
-     fechaActual = new Date()
-    mesActual = fechaActual.getMonth() + clicker;// guardar el mes actual en una variable
-    fechaActual.setMonth(mesActual); // sumar un mes a la fecha actual
-    fechaActual.setDate(0); // establecer la fecha al último día del mes anterior
-    ultimoDiaMes = fechaActual.getDate();
-    primerDiaMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), 1);
-    primerDiaSemana = primerDiaMes.getDay();
-
-    fechaString = fechaActual.toISOString().substring(0, 8);
-    conseguirMes();
-    creardias(fechaString);
+    swipeLeft();
 })
+
+function swipeLeft(){
+  clicker--
+  contadorDias= 0;
+   mes.innerHTML = "";
+   fechaActual = new Date()
+  mesActual = fechaActual.getMonth() + clicker;// guardar el mes actual en una variable
+  fechaActual.setMonth(mesActual); // sumar un mes a la fecha actual
+  fechaActual.setDate(0); // establecer la fecha al último día del mes anterior
+  ultimoDiaMes = fechaActual.getDate();
+  primerDiaMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), 1);
+  primerDiaSemana = primerDiaMes.getDay();
+
+  fechaString = fechaActual.toISOString().substring(0, 8);
+  conseguirMes();
+  creardias(fechaString);
+}
 
 async function onAuthStateChangedHandler(user, fechadeldia, elemento) {
    // console.log(fechadeldia);
@@ -170,9 +178,10 @@ async function creardias(fechaString){
               resolve();
             });
           })
-          diaPElement.innerText = fechaDelDia; // set the day number as the text content of the paragraph element
+          diaPElement.innerText = contadorDias; // set the day number as the text content of the paragraph element
           diaElement.appendChild(diaPElement); // append the paragraph element to the day element
           diaElement.classList.add("dia"); // add the "dia" class to the day element
+          diaPElement.classList.add("dia_p")
           diaElement.addEventListener("click", (e) => { // add a click event listener to the day element
             console.log("Clicked on day", e.target.innerText);
             mensaje.innerHTML = (e.target.innerHTML)
@@ -189,3 +198,44 @@ async function creardias(fechaString){
   }
   const getDormir = () => db.collection("dormir");
 
+  var xDown = null;                                                        
+  var yDown = null;                                                        
+  
+  function handleTouchStart(evt) {                                         
+      xDown = evt.touches[0].clientX;                                      
+      yDown = evt.touches[0].clientY;                                      
+  };                                                
+  
+  function handleTouchMove(evt) {
+      if ( ! xDown || ! yDown ) {
+          return;
+      }
+  
+      var xUp = evt.touches[0].clientX;                                    
+      var yUp = evt.touches[0].clientY;
+  
+      var xDiff = xDown - xUp;
+      var yDiff = yDown - yUp;
+  
+      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+          if ( xDiff > 0 ) {
+              console.log("LEFT SWIPE")
+              swipeRight();
+              
+          } else {
+              console.log("RIGHT SWIPE")
+              swipeLeft();
+          }                       
+      } else {
+          if ( yDiff > 0 ) {
+              /* up swipe */ 
+          } else { 
+              /* down swipe */
+          }                                                                 
+      }
+      xDown = null;
+      yDown = null;                                             
+  };
+  
+  document.addEventListener('touchstart', handleTouchStart, false);        
+  document.addEventListener('touchmove', handleTouchMove, false);

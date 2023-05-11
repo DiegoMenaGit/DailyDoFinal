@@ -5,6 +5,7 @@
 }
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow: hidden;
     background: linear-gradient(rgb(44, 175, 193),rgb(169, 229, 243));
 }
 
@@ -30,6 +31,7 @@ body{
 .titulo{ 
     position: absolute;
     text-align: center;
+    font-size: 60px;
     top: 30px;
     padding:  90px 0 0 0;
 }
@@ -81,6 +83,7 @@ body{
     display: flex;
     justify-content: end;
     padding: 20px;
+    z-index: 500;
     width: 100vw;
     height: 100px;
 }
@@ -200,3 +203,20 @@ td.flagged {
 	color: black;
 }
 
+@media only screen and (max-width:1200px){
+    .explosion{
+        width: 40vw;
+    }
+    .frutas{
+        width: 10vw;
+        font-size: 30px;
+    }
+    .centro{
+        width: 60vw;
+    }
+    .boton{
+        height: 5vh;
+        width: 20vw;
+        font-size: 40px;
+    }
+}

@@ -215,12 +215,12 @@ facil.addEventListener("click", function() {
   function stopAudio() {
     if (!isPlaying) {
       audio.pause();
-      boton_paraAudio.innerHTML = "🔈";
+      boton_paraAudio.innerHTML = `<i class="fa fa-volume-xmark"></i>`;
       isPlaying = true;
     } else {
       audio.play();
       audio.currentTime = 0;
-      boton_paraAudio.innerHTML = "🔊";
+      boton_paraAudio.innerHTML = `<i class="fa-solid fa-volume-high"></i>`;
       isPlaying = false;
     }
   }
@@ -252,4 +252,3 @@ document.querySelector("h1").onmouseover = event => {
     iteration += 1 / 3;
   }, 30);
 }
-//https://www.codingnepalweb.com/?s=snake

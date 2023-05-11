@@ -76,6 +76,7 @@ body{
 }
 
 .dia{
+  /*  outline: 0.2rem solid; */
     transition: 100ms;
     position: relative;
     background-color: rgba(145, 89, 142, 0.6);
@@ -89,6 +90,7 @@ body{
     z-index: 300;
 }
 .dia:active{
+    
     transition: 200ms;
     background-color: rgba(255, 169, 202, 1);
     transform: scale(1.3);
@@ -184,8 +186,8 @@ body{
 
   .volver {
     z-index: 5000;
-    left: 40px;
-    width: 80px;
+    left: 0vw;
+    width: 13vw;
     height: 6vw;
     position: absolute;
     display: flex;
@@ -234,6 +236,9 @@ body{
 }
 
 @media only screen and (max-width:720px){
+    .botones{
+      display: none;
+    }
     .titulo_mes{
         font-size: 20px;
     }
@@ -242,8 +247,8 @@ body{
         transition: 20ms;
         position: absolute;
         display: flex;
-        height: 60vh;
-        width: 70vw;
+        height: 100vh;
+        width: 100vw;
         flex-direction: column;
         z-index: 250;
     }
@@ -256,6 +261,17 @@ body{
         transition: 100ms;
         padding: 0 0 0 0;
     }
+}
+
+@media only screen and (max-width: 500px){
+  .dia_p{
+    position: absolute;
+    font-size: 10px;
+  }
+  .calendario{
+    width: 100vw;
+    height: 100vh;
+  }
 }
 
 @keyframes spin {
