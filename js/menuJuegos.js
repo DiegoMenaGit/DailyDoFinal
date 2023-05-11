@@ -8,6 +8,10 @@ buscaminas.addEventListener("click", ()=>{
   window.location.href ="../html/buscaminas.html"
 })
 
+snake.addEventListener("click", ()=>{
+  window.location.href ="../html/snake.html"
+})
+
 wordle.addEventListener("click", ()=>{
   window.location.href ="../html/wordle.html"
 })

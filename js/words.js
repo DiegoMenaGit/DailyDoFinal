@@ -88,7 +88,7 @@ const wordList = [
         hint: "legumbre alta en proteina y fibra"
         },
         {
-        word: "aceite de oliva",
+        word: "aceitedeoliva",
         hint: "grasa saludable alta en antioxidantes"
         },
         {

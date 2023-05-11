@@ -198,7 +198,7 @@ async function creardias(fechaString){
 `;
             modalContent.style.setProperty("transform", "scale(1)")
             modalContent.style.setProperty("z-index", "800");
-            modalContent.classList.add(e.target.classList[1]);
+            modalContent.classList.add(e.currentTarget.classList[1]);
             activo = false
           });
           mes.appendChild(diaElement); // append the day element to the month element
