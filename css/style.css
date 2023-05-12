@@ -17,6 +17,8 @@ html {
 
 body{
     font-family:  Verdana, Geneva, Tahoma, sans-serif;
+    width: 100vw;
+    height: 100vh;
     background-color: rgb(37, 37, 37);
     color: white;
     padding: 0%;
@@ -68,7 +70,7 @@ body{
 
 .article__div{
  position: fixed;
- width: 100%;
+ width: 100vw;
  height: 100vh;
  opacity: 30%;
  overflow:hidden;

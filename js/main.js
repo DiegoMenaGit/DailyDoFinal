@@ -20,6 +20,7 @@ var sidebar__button = document.querySelector(".sidebar__button");
 var sidebar = document.querySelector(".sidebar");
 var logout = document.querySelector(".logout");
 var sleep = document.querySelector(".sleep");
+var dailyPost = document.querySelector(".dailyPost");
 
 var header = document.querySelector(".header");
 var image = document.querySelector(".image_logo2");
@@ -90,6 +91,9 @@ calendario.addEventListener("click", ()=>{
 })
 juegos.addEventListener("click", ()=>{
   window.location.href ="./html/menuJuegos.html"
+})
+dailyPost.addEventListener("click", ()=>{
+  window.location.href = "./html/dailypost.html"
 })
 firebase.auth().onAuthStateChanged(async function (user) {
   var nameuser = "Default";

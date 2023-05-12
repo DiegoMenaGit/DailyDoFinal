@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/0a29920cf8.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/dailypost.css">
+    <title>DailyPost</title>
+</head>
+<body>
+    <div class="draganddrop_container">
+        <div class="draganddrop" id="draganddrop">
+            <div class="text">Drag and drop files here <br> or <br> Click to select files</div>
+            <input type="file" id="fileinput" class="fileinput" accept="image/*">
+          </div>
+    </div>
+    <header class="header">
+
+    </header>
+    <article class="articulo">
+        <div class="login_container">
+            <div class="foto_perfil">
+                <img class="imagen" src="../media/profile_pic.webp" alt="profilepic">
+            </div>
+            <div class="div_login">
+                    <p class="p_username">default</p>
+                    <p class="p_login">login</p>
+
+            </div>
+        </div>
+        <div class="logo_container">
+            <img class="logo" src="../media/LOGO.PNG" alt="dailydo">
+        </div>
+            <div class="header__container">
+        </div>
+        <div class="cuerpo">
+        <section class="posts">
+            <div class="postear">
+                <div class="postear_container">
+                    <textarea id="postear_textarea" cols="40" rows="10" placeholder="Escribe en lo que estes pensando..."></textarea>
+                </div>
+                <div class="boton_abrir_imagen">
+                    <i class="fa fa-image"></i>
+                </div>
+                <div class="boton_enviar">
+                    <i class="fa fa-paper-plane"></i>
+                </div>
+            </div>
+        </section>
+        <section class="side">
+
+        </section>
+        </div>
+    </article>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script>
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAaCOYzY0U01U972XotnfvQvMXHML8IK1U",
+            authDomain: "dailydo-fcc2c.firebaseapp.com",
+            projectId: "dailydo-fcc2c",
+            storageBucket: "dailydo-fcc2c.appspot.com",
+            messagingSenderId: "130290065292",
+            appId: "1:130290065292:web:caf7c3ac1454a73aa480a9",
+            measurementId: "G-HLE2FLC323"
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const analytics = firebase.analytics(app);
+        const auth = firebase.auth();
+    </script>
+    <script src="../js/dailypost.js"></script>
+</body>
+</html>

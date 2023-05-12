@@ -1,0 +1,259 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 100vh;
+    width: 100vw;
+}
+
+.logo_container{
+    width: 100vw;
+    height: 0;
+    background: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    transition: 200ms;
+    top: 3vh;
+    position: fixed;
+    z-index: 550;
+    width: 24vh;
+}
+.header{
+    position: absolute;
+    height: 20vh;
+    width: 100vw;
+}
+
+.header__container{
+    transition: 200ms;
+    position: fixed;
+    width: 100vw;
+    height: 20vh;
+    background-color: #27E1C1;
+    z-index: 350;
+}
+
+.articulo{
+    position: absolute;
+    width: 100vw;
+    height: 900vh;
+    background: linear-gradient(rgb(243, 243, 243),rgba(10, 10, 10, 1));
+}
+
+.login_container{
+    position: fixed;
+    z-index: 400;
+    top: 5vh;
+    left: 5vh;
+    background-color: #35af9a;
+    z-index: 551;
+    border-radius: 5vh;
+    width: 15vw;
+    height: 10vh;
+}
+
+.foto_perfil{
+    transition: 1s;
+    opacity: 1;
+    position: fixed;
+    background-color: blue;
+    z-index: 600;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.foto_perfil:active{
+    transition: 1s;
+    transform: translateX(10.5vw);
+}
+.div_login{
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 15vw;
+    height: 10vh;
+}
+
+.p_username{
+    font-size: 2.5vh;
+    top: 8.5vh;
+    left: 6vh;
+    position: fixed;
+    color: white;
+}
+.p_login{
+    font-size: 2.5vh;
+    top: 8.5vh;
+    left: 13vw;
+    position: fixed;
+    color: white;
+}
+.imagen{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    cursor: pointer;
+}
+
+.cuerpo{
+    top: 20vh;
+    height: 100%;
+    width: 100vw;
+    position: absolute;
+    background: linear-gradient(rgba(10, 10, 10, 1),rgb(243, 243, 243));
+    z-index: 200;
+
+    display: grid;
+    grid-template-columns: 6fr 2fr;
+    grid-template-rows: 1fr;
+}
+
+.posts{
+    background-color: rgba(76, 215, 240, 0.4);
+}
+
+.postear{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35vh;
+    background-color: transparent;
+}
+.postear_container{
+    height: 30vh;
+    width: 73vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(62, 59, 59);
+    border-radius: 2vh;
+}
+#postear_textarea{
+    padding: 2vw;
+    border-radius: 2vh;
+    font-size: large;
+    height: 26vh;
+    width: 65vw;
+    resize: none;
+}
+.boton_abrir_imagen{
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 700;
+    top: 20vh;
+    right: 49vh;
+    width: 5vh;
+    border-radius: 25%;
+    height: 5vh;
+}
+.boton_abrir_imagen:hover{
+    transition: 200ms;
+    color: white;
+}
+
+.boton_enviar{
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 700;
+    top: 25vh;
+    right: 49vh;
+    width: 5vh;
+    border-radius: 25%;
+    height: 5vh;
+}
+
+.boton_enviar:hover{
+    transition: 200ms;
+    color: white;
+}
+.side{
+    background-color: rgba(76, 240, 92, 0.4);
+}
+
+@media only screen and (max-width: 1600px){
+    .header__container{
+        height: 8vh;
+    }
+    .logo{
+        top: 0;
+        width: 13.5vh;
+    }
+    .login_container{
+        top: 1vh;
+        width: 15vw;
+        height: 6vh;
+    }
+    .p_username{
+        top: 3vh;
+        left: 4.3vw;
+        font-size: 1.6vh;
+    }
+    .p_login{
+        top: 3vh;
+        left: 15vw;
+        font-size: 1.6vh;
+    }
+    .foto_perfil{
+        width: 6vh;
+        height: 6vh;
+        
+    }
+    .foto_perfil:active{
+        transform: translateX(10.5vw);
+    }
+    .cuerpo{
+        top: 8vh;
+    }
+}
+
+.draganddrop_container{
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 10, 10, 0.8);
+}
+
+.draganddrop {
+    width: 50vw;
+    height: 60vh;
+    border: 2px dashed white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .text {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .fileinput {
+    display: flex;
+    color: white;
+  }
