@@ -6,8 +6,10 @@
 
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #F5E9CF;
     height: 100vh;
     width: 100vw;
+    overflow-x: hidden;
 }
 
 .logo_container{
@@ -20,6 +22,7 @@ body{
 }
 
 .logo{
+    cursor: pointer;
     transition: 200ms;
     top: 3vh;
     position: fixed;
@@ -44,7 +47,7 @@ body{
 .articulo{
     position: absolute;
     width: 100vw;
-    height: 900vh;
+    height: 100%;
     background: linear-gradient(rgb(243, 243, 243),rgba(10, 10, 10, 1));
 }
 
@@ -115,12 +118,59 @@ body{
     z-index: 200;
 
     display: grid;
-    grid-template-columns: 6fr 2fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
 }
 
+.otrosPost{
+    position: absolute;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.post_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+.post{
+    min-height: 30vh;
+    width: 73vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 2vh 0 2vh 0;
+    padding: 10vh;
+    background-color: rgba(39, 225, 193, 0.2);
+}
+
+.post:hover{
+    transition: 200ms;
+    background-color: rgba(39, 225, 193, 1);
+}
+.post__imagen{
+    width: 60vw;
+}
+.post__texto{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 0 7vh 0;
+}
+.post__imagen__img{
+    border-radius: 2vh;
+    width: 100%;
+    height: 100%;
+    max-height: 60vh;
+    object-fit: cover;
+    object-position: center center;
+    cursor: pointer;
+}
 .posts{
-    background-color: rgba(76, 215, 240, 0.4);
+    
+    background-color: #F5E9CF;
 }
 
 .postear{
@@ -136,7 +186,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(62, 59, 59);
     border-radius: 2vh;
 }
 #postear_textarea{
@@ -156,7 +205,7 @@ body{
     text-align: center;
     z-index: 700;
     top: 20vh;
-    right: 49vh;
+    right: 27vw;
     width: 5vh;
     border-radius: 25%;
     height: 5vh;
@@ -175,7 +224,7 @@ body{
     text-align: center;
     z-index: 700;
     top: 25vh;
-    right: 49vh;
+    right: 27vw;
     width: 5vh;
     border-radius: 25%;
     height: 5vh;
@@ -186,7 +235,12 @@ body{
     color: white;
 }
 .side{
-    background-color: rgba(76, 240, 92, 0.4);
+    position: fixed;
+    right: 0;
+    width: 26vw;
+    height: 100%;
+    z-index: 20000;
+    background-color: #E96479;
 }
 
 @media only screen and (max-width: 1600px){
