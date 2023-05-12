@@ -1,5 +1,8 @@
 console.log("funciono")
 
+var posteador = document.querySelectorAll(".post")
+var side = document.querySelector(".side")
+var cuerpo = document.querySelector(".cuerpo")
 var imagenBoton = document.querySelector(".boton_abrir_imagen")
 var draganddrop_container = document.querySelector(".draganddrop_container")
 var draganddrop = document.querySelector(".draganddrop")
@@ -7,11 +10,35 @@ var boton_enviar = document.querySelector(".boton_enviar")
 var postear_textarea = document.querySelector("#postear_textarea")
 var logo = document.querySelector(".logo")
 var otrosPost = document.querySelector(".otrosPost")
+var bars_container = document.querySelector(".bars_container")
+var boleano = true
 
 const db = firebase.firestore();
 
 var modalAbierto = false
 
+bars_container.addEventListener("click", (e)=>{
+    esconderSideBar(boleano);
+    if(boleano) {
+        boleano = false
+    }
+    else{
+        boleano = true
+    }
+})
+
+function esconderSideBar(boleano){
+    console.log(boleano)
+    if(boleano){
+        cuerpo.style.setProperty("grid-template-columns", "1fr")
+        side.style.setProperty("display", "none")
+        //posteador.style.setProperty("width", "100vw")
+    }
+    else{
+        cuerpo.style.setProperty("grid-template-columns", "1fr 2fr")
+        side.style.setProperty("display", "flex")
+    }
+}
 logo.addEventListener("click", (e)=>{
     window.location.href = "../index.html"
 })
