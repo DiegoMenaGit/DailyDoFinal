@@ -106,71 +106,52 @@ volver.addEventListener("click", () => {
 boton2.addEventListener("click", async (e) => {
   if (active) {
     if (contrasenya.value == repetirContrasenya.value) {
-      auth
-        .createUserWithEmailAndPassword(email.value, contrasenya.value)
-        .then((userCredential) => {
-          const userId = userCredential.user.uid;
-          if (username.value != null) {
-            save_task(userId, username.value, "0");
-          } else {
-            save_task(userId, "randomGuy", "0");
-          }
-          // clear the form !!!!
-          allInputs.forEach((input) => {
-            input.value = "";
-          });
-          // redirect to the index.html page after the data is saved
-          db.collection("usuarios")
-            .get()
-            .then(() => {
-              window.location = "../index.html";
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        })
-        .catch((error) => {
-          if (error.code === "auth/invalid-email") {
-            modal.style.display = "flex";
-            modalContent.style.display = "flex";
-            modalContent.innerHTML = "¡¡¡El email es invalido!!!";
-          } else {
-            // Handle any other errors here
-            modal.style.display = "flex";
-            modalContent.style.display = "flex";
-            modalContent.innerHTML = "¡¡¡Error!!!";
-          }
-        });
-    } else {
-      //alert("¡¡¡Las contraseñas NO coinciden!!!")
-      modal.style.display = "flex";
-      modalContent.style.display = "flex";
-      modalContent.innerHTML = "¡¡¡Las contraseñas NO coinciden!!!";
-    }
-  } else {
-    auth
-      .signInWithEmailAndPassword(email2.value, contrasenya2.value)
-      .then((userCredential) => {
-        // clear the form !!!!
+      try {
+        const userCredential = await auth.createUserWithEmailAndPassword(email.value, contrasenya.value);
+        const userId = userCredential.user.uid;
+
+        await new Promise((resolve) => setTimeout(resolve, 3000)); // Delay for 3 seconds
+
+        const usernameValue = username.value || "randomGuy";
+        await save_task(userId, usernameValue, "0", "");
+
+        // Clear the form
         allInputs.forEach((input) => {
           input.value = "";
         });
-        // irse a otra pagina !!!!
-        window.location = "../index.html";
-      })
-      .catch((error) => {
-        if (error.code === "auth/invalid-email") {
-          modal.style.display = "flex";
-          modalContent.style.display = "flex";
-          modalContent.innerHTML = "¡¡¡El email es invalido!!!";
-        } else {
-          modal.style.display = "flex";
-          modalContent.style.display = "flex";
-          modalContent.innerHTML = "¡¡¡Error!!!";
-        }
+
+        // Redirect to the index.html page after the data is saved
+        db.collection("usuarios")
+          .get()
+          .then(() => {
+            window.location = "../index.html";
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } catch (error) {
+        handleAuthenticationError(error);
+      }
+    } else {
+      showModalMessage("¡¡¡Las contraseñas NO coinciden!!!");
+    }
+  } else {
+    try {
+      await auth.signInWithEmailAndPassword(email2.value, contrasenya2.value);
+
+      // Clear the form
+      allInputs.forEach((input) => {
+        input.value = "";
       });
+
+      // Go to another page
+      window.location = "../index.html";
+    } catch (error) {
+      handleAuthenticationError(error);
+    }
   }
 });
+
 /*
 logout.addEventListener("click", (e)=>{
   logout.preventDefault();
@@ -210,12 +191,38 @@ function userlogout() {
   });
 }
 
-const save_task = (userid, username, points) => {
-  db.collection("usuarios").doc().set({
-    userid,
-    username,
-    points,
+const save_task = (userid, username, points, profilepic) => {
+  return new Promise((resolve, reject) => {
+    db.collection("usuarios")
+      .doc()
+      .set({
+        userid,
+        username,
+        points,
+        profilepic,
+      })
+      .then(() => {
+        console.log("Enviado.");
+        console.log(userid, username + " " + points);
+        resolve();
+      })
+      .catch((error) => {
+        console.log("Error al enviar:", error);
+        reject(error);
+      });
   });
-  console.log("Enviado.");
-  console.log(userid, username + " " + points);
+};
+
+const handleAuthenticationError = (error) => {
+  if (error.code === "auth/invalid-email") {
+    showModalMessage("¡¡¡El email es inválido!!!");
+  } else {
+    showModalMessage("¡¡¡Error!!!");
+  }
+};
+
+const showModalMessage = (message) => {
+  modal.style.display = "flex";
+  modalContent.style.display = "flex";
+  modalContent.innerHTML = message;
 };

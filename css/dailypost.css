@@ -407,6 +407,7 @@ body{
     animation: loading 0.75s ease infinite;
 }
 
+
 @keyframes loading {
     from {
       transform: rotate(0turn);

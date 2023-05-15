@@ -18,6 +18,17 @@ var boleano = true
 
 const db = firebase.firestore();
 
+const hola = firebase.auth().onAuthStateChanged(function (user){
+  if (user){
+    getUser(user.uid).then((nombreuser)=>{
+      imagenPerfilConatiner.innerHTML = `<img class="imagen" src="${nombreuser.profilepic}" alt="profilepic">`
+    })
+  }
+  else{
+    console.log("Usuario no logueado")
+  }
+})
+
 imagenPerfilConatiner.addEventListener("click", (e) => {
   if(boleano){
     firebase.auth().onAuthStateChanged(function (user) {
@@ -25,7 +36,7 @@ imagenPerfilConatiner.addEventListener("click", (e) => {
         getUser(user.uid)
           .then((nombreUser) => {
             console.log(nombreUser)
-            p_username.innerHTML = nombreUser;
+            p_username.innerHTML = nombreUser.username;
           })
           .catch((error) => {
             console.log("Error al obtener el nombre de usuario:", error);
@@ -225,7 +236,7 @@ const getAllEntries = () => {
   
             getUser(doc.data().userid)
               .then((nombreUser) => {
-                nombreUsuario = nombreUser;
+                console.log(nombreUser)
   
                 console.log(texto, imagen, usuarioPost, fecha);
   
@@ -237,9 +248,9 @@ const getAllEntries = () => {
                 otrosPost.innerHTML += `<div class="post_container">
                   <div class="post">
                     <div class="usuarioContainer">
-                      <img class="profile" src="../media/profile_pic.webp" alt="ProfilePic"></img>
+                      <img class="profile" src="${nombreUser.profilepic}" alt="ProfilePic"></img>
                       <div class="nombreUsuarioContainer">
-                        <p class="nombreUsuario">${nombreUsuario}</p>
+                        <p class="nombreUsuario">${nombreUser.username}</p>
                         <p class="fechaYhora">${fecha}</p>
                       </div>
                     </div>
@@ -289,9 +300,10 @@ const getUser = (userid) => {
       let username = "";
       querySnapshot.forEach((doc) => {
         username = doc.data().username;
+        profilepic = doc.data().profilepic
       });
       console.log(`NOMBRE DE USUARIO = ${username}`);
-      return username;
+      return {username, profilepic};
     })
     .catch((error) => {
       console.log("Error getting user: ", error);
@@ -309,6 +321,3 @@ window.addEventListener("load", () => {
       document.body.removeChild("loader");
     });
   });
-  volver.addEventListener("click", () => {
-    window.location.href = "../index.html";
-});

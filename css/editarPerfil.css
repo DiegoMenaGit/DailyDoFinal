@@ -148,6 +148,37 @@ label{
     border-top-color: #00ffe7;
     animation: loading 0.75s ease infinite;
 }
+.draganddrop_container{
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 10, 10, 0.8);
+}
+
+.draganddrop {
+    width: 50vw;
+    height: 60vh;
+    border: 2px dashed white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.text {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .fileinput {
+    display: flex;
+    color: white;
+  }
 
 @keyframes loading {
     from {
