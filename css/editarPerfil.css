@@ -22,6 +22,26 @@ body{
     width: 8vh;
     height: 8vh;
 }
+.image_edit{
+    opacity: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    top: 14.4vh;
+    right: 48vw;
+    border-radius: 50%;
+    width: 8vh;
+    height: 8vh;
+    background-color: #d6d6d6;
+    position: absolute;
+    z-index: 600;
+}
+.image_edit:hover{
+    transition: 200ms;
+    opacity: 0.8;
+}
 
 .editar{
     width: 30vw;
@@ -34,6 +54,7 @@ body{
     padding: 0px;
 }
 .contenedor{
+    text-align: center;
     display: flex;
     width: 30vw;
     justify-content: center;
@@ -46,6 +67,93 @@ body{
     border-bottom-width: 0;
 }
 
-.contenido{
-    
+.contimg{
+    margin: 1vh 0 0 0;
 }
+
+.contenido{
+    height: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+label{
+    color: rgb(49, 49, 49);
+}
+
+.edit_button{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    top: 30vh;
+    right: 38vw;
+    width: 4vh;
+    border-radius: 50%;
+    height: 4vh;
+    background-color: #005646;
+    position: absolute;
+    z-index: 600;
+}
+
+.volver {
+    z-index: 5000;
+    left: 0vw;
+    width: 10vw;
+    height: 6vw;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .image_logo2 {
+    transition: 200ms;
+    width: 13vw;
+    height: 6vw;
+  }
+  
+  .image_logo2:hover {
+    transition: 200ms;
+    cursor: pointer;
+  }
+  .loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(37, 37, 37);
+    transition: opacity 0.75s, visibility 0.75s;
+    z-index: 1000;
+}
+
+.loader-hidden{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after{
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-radius: 0%;
+    border-top-color: #00ffe7;
+    animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading {
+    from {
+      transform: rotate(0turn);
+    }
+    to {
+      transform: rotate(1turn);
+    }
+  }

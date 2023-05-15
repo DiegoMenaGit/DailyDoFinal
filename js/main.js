@@ -21,6 +21,7 @@ var sidebar = document.querySelector(".sidebar");
 var logout = document.querySelector(".logout");
 var sleep = document.querySelector(".sleep");
 var dailyPost = document.querySelector(".dailyPost");
+var perfil = document.querySelector(".perfil");
 
 var header = document.querySelector(".header");
 var image = document.querySelector(".image_logo2");
@@ -94,6 +95,9 @@ juegos.addEventListener("click", ()=>{
 })
 dailyPost.addEventListener("click", ()=>{
   window.location.href = "./html/dailypost.html"
+})
+perfil.addEventListener("click",()=>{
+  window.location.href ="./html/editarPerfil.html"
 })
 firebase.auth().onAuthStateChanged(async function (user) {
   var nameuser = "Default";

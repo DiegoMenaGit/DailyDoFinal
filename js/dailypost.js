@@ -299,3 +299,16 @@ const getUser = (userid) => {
 };
 
 getAllEntries();
+
+window.addEventListener("load", () => {
+    const loader = document.querySelector(".loader");
+  
+    loader.classList.add("loader-hidden");
+  
+    loader.addEventListener("transitioned", () => {
+      document.body.removeChild("loader");
+    });
+  });
+  volver.addEventListener("click", () => {
+    window.location.href = "../index.html";
+});
