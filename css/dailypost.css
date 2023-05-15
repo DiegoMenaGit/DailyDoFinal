@@ -63,7 +63,7 @@ body{
 }
 
 .foto_perfil{
-    transition: 1s;
+    transition: 200ms;
     opacity: 1;
     position: fixed;
     background-color: blue;
@@ -73,10 +73,7 @@ body{
     border-radius: 50%;
     overflow: hidden;
 }
-.foto_perfil:active{
-    transition: 1s;
-    transform: translateX(10.5vw);
-}
+
 .div_login{
     position: absolute;
     align-items: center;
@@ -151,6 +148,37 @@ body{
     transition: 200ms;
     background-color: rgba(39, 225, 193, 1);
 }
+
+.usuarioContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.fechaYhora{
+    margin: 0 0 0 1vh;
+}
+
+.profile{
+    border-radius: 50%;
+    margin: 0 1vh 0 0;
+    width: 4vh;
+    height: 4vh;
+}
+
+.nombreUsuarioContainer{
+    display: flex;
+    align-items: center;
+}
+
+.nombreUsuario{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 900;
+    font-size: 2vh;
+}
 .post__imagen{
     width: 60vw;
 }
@@ -158,6 +186,8 @@ body{
     width: 100%;
     display: flex;
     align-items: center;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.3);
     margin: 0 0 7vh 0;
 }
 .post__imagen__img{
@@ -236,16 +266,30 @@ body{
     color: white;
 }
 .side{
-    transition: 1s;
+    transition: 0.2s;
     position: fixed;
     right: 0;
     width: 26vw;
     height: 100%;
     z-index: 200;
-    background-color: #E96479;
+    background-color: rgba(233,100,121, 0.5);
 }
 
+.bars_container{
+    position: fixed;
+    cursor: pointer;
+    z-index: 777;
+    right: 6vw;
+    top: 8vh;
+    font-size: 4vh;
+  }
+
+
 @media only screen and (max-width: 1600px){
+
+    .bars_container{
+        top: 1vh;
+    }
     .header__container{
         height: 8vh;
     }
@@ -273,9 +317,7 @@ body{
         height: 6vh;
         
     }
-    .foto_perfil:active{
-        transform: translateX(10.5vw);
-    }
+    
     .cuerpo{
         top: 8vh;
     }
@@ -314,11 +356,4 @@ body{
     color: white;
   }
 
-  .bars_container{
-    position: fixed;
-    cursor: pointer;
-    z-index: 777;
-    right: 6vw;
-    top: 8vh;
-    font-size: 4vh;
-  }
+  

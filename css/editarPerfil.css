@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(13, 13, 13);
+}
+
+.fondo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.profile_pic{
+    cursor: pointer;
+    width: 8vh;
+    height: 8vh;
+}
+
+.editar{
+    width: 30vw;
+    height: 80vh;
+    border-radius: 20px;
+    background-color: #27E1C1;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 2.5fr;
+    padding: 0px;
+}
+.contenedor{
+    display: flex;
+    width: 30vw;
+    justify-content: center;
+    align-items: center;
+    border-bottom-style: dashed;
+    border-bottom-width: 2px;
+    border-bottom-color: #005646;
+}
+.puntos_section{
+    border-bottom-width: 0;
+}
+
+.contenido{
+    
+}

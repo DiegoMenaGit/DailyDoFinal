@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../css/editarPerfil.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+</head>
+<body>
+    <div class="fondo">
+        <div class="editar">
+            <div class="contenedor foto_section">
+                <div class="contenido foto_container">
+                    <img class="profile_pic" src="../media/profile_pic.webp" alt="foto_perfil">
+                </div>
+            </div>
+            <div class="contenedor nombre_section">
+                <div class="contenido nombre_container">
+                    <p class="nombre_container__p">Default</p>
+                </div>
+            </div>
+            <div class="contenedor email_section">
+                <div class="contenido email_container">
+                    <p class="email_container__p">ejemplo@gmail.com</p>
+                </div>
+            </div>
+            <div class="contenedor puntos_section">
+                <div class="contenido puntos_container">
+                    <p class="puntos_container__p"><span>0</span> Puntos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+    <script>
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAaCOYzY0U01U972XotnfvQvMXHML8IK1U",
+            authDomain: "dailydo-fcc2c.firebaseapp.com",
+            projectId: "dailydo-fcc2c",
+            storageBucket: "dailydo-fcc2c.appspot.com",
+            messagingSenderId: "130290065292",
+            appId: "1:130290065292:web:caf7c3ac1454a73aa480a9",
+            measurementId: "G-HLE2FLC323"
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const analytics = firebase.analytics(app);
+        const auth = firebase.auth();
+    </script>
+    <script src="../js/editarPerfil.js"></script>
+</body>
+</html>

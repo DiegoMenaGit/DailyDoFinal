@@ -1,5 +1,8 @@
 console.log("funciono")
 
+var p_username = document.querySelector(".p_username")
+var imagenPerfil = document.querySelector(".imagen")
+var imagenPerfilConatiner = document.querySelector(".foto_perfil")
 var posteador = document.querySelectorAll(".post")
 var side = document.querySelector(".side")
 var cuerpo = document.querySelector(".cuerpo")
@@ -15,28 +18,56 @@ var boleano = true
 
 const db = firebase.firestore();
 
-var modalAbierto = false
+imagenPerfilConatiner.addEventListener("click", (e) => {
+  if(boleano){
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        getUser(user.uid)
+          .then((nombreUser) => {
+            console.log(nombreUser)
+            p_username.innerHTML = nombreUser;
+          })
+          .catch((error) => {
+            console.log("Error al obtener el nombre de usuario:", error);
+          });
+      } else {
+        window.location.href = "../html/login.html";
+      }
+    });
+    imagenPerfilConatiner.style.setProperty("transform","translateX(10.5vw)")
+    boleano = false
+  }
+  else{
+    console.log("estoy en la derecha")
+    p_username.innerHTML = "";
+    imagenPerfilConatiner.style.setProperty("transform", "translateX(0)")
+    boleano = true
+  }
+});
 
+var modalAbierto = false
+esconderSideBar(boleano)
 bars_container.addEventListener("click", (e)=>{
-    esconderSideBar(boleano);
     if(boleano) {
         boleano = false
     }
     else{
         boleano = true
     }
+    esconderSideBar(boleano);
+    
 })
 
 function esconderSideBar(boleano){
     console.log(boleano)
     if(boleano){
         cuerpo.style.setProperty("grid-template-columns", "1fr")
-        side.style.setProperty("display", "none")
+        side.style.setProperty("width", "0")
         //posteador.style.setProperty("width", "100vw")
     }
     else{
         cuerpo.style.setProperty("grid-template-columns", "1fr 2fr")
-        side.style.setProperty("display", "flex")
+        side.style.setProperty("width", "26vw")
     }
 }
 logo.addEventListener("click", (e)=>{
@@ -120,6 +151,15 @@ firebase.auth().onAuthStateChanged(function (user) {
       var email = user.email;
       console.log(`${uid} y ${email}`);
       boton_enviar.addEventListener("click", (e)=>{
+        var fechaHoraActual = new Date();
+        var dia = ("0" + fechaHoraActual.getDate()).slice(-2);
+        var mes = ("0" + (fechaHoraActual.getMonth() + 1)).slice(-2);
+        var anio = fechaHoraActual.getFullYear();
+        var hora = ("0" + fechaHoraActual.getHours()).slice(-2);
+        var minutos = ("0" + fechaHoraActual.getMinutes()).slice(-2);
+
+        var formato = mes + "/" + dia + "/" + anio + " " + hora + ":" + minutos;
+
         console.log(`${postear_textarea.value}, ${fileInput.value}`)
         // Upload the file to Firebase Storage
         const file = fileInput.files[0];
@@ -131,12 +171,12 @@ firebase.auth().onAuthStateChanged(function (user) {
                 // Save the download URL in the Firestore database
                 uploadTask.on("state_changed", null, null, () => {
                 uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                    save_post(uid, postear_textarea.value, downloadURL);
+                    save_post(uid, postear_textarea.value, downloadURL, formato);
                 });
             });
         }
         else{
-            save_post(uid, postear_textarea.value, "")
+            save_post(uid, postear_textarea.value, "",formato)
         }
       });
     } else {
@@ -144,42 +184,118 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
   });
 
-  const save_post = (userid, text, img) => {
+const save_post = (userid, text, img, fecha) => {
     db.collection("dailypost").doc().set({
       userid,
       text,
       img,
+      fecha
     }).then(() => {
       console.log("Enviado.");
-      console.log(userid, text, img);
+      console.log(userid, text, img, fecha);
       location.reload();
     }).catch((error) => {
       console.error("Error writing document: ", error);
     });
-  };
+};
 const getAllEntries = () => {
-    db.collection("dailypost")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          console.log(doc.id, doc.data());
-          var texto = doc.data().text;
-          var imagen = doc.data().img;
-          var usuarioPost = doc.data().userid;
-          console.log(texto, imagen, usuarioPost)
-          var htmlImg = `<div class="post__imagen"><img class="post__imagen__img" src="${imagen}" alt="imagenPost"></img>`
-          if(imagen <= 1){
-            htmlImg =  "";
-          }
-          otrosPost.innerHTML += `<div class="post_container">
-          <div class="post">
-              <p class="post__texto">${texto}</p>
-              <p class="post__usuario"></p> `+htmlImg+`</div></div></div>`
+    const batchSize = 3; // Número de entradas a cargar en cada lote
+    let lastEntry = null; // Última entrada cargada
+  
+    const loadEntries = () => {
+      db.collection("dailypost")
+        .orderBy("fecha") // Ordenar por fecha ascendente
+        .startAfter(lastEntry) // Comenzar después de la última entrada cargada
+        .limit(batchSize) // Limitar el número de entradas a cargar en cada lote
+        .get()
+        .then((querySnapshot) => {
+          const entries = [];
+          querySnapshot.forEach((doc) => {
+            entries.push(doc);
+            lastEntry = doc; // Actualizar la última entrada cargada
+          });
+  
+          // Generar los divs para las entradas cargadas
+          entries.forEach((doc) => {
+            var texto = doc.data().text;
+            var imagen = doc.data().img;
+            var usuarioPost = doc.data().userid;
+            var fecha = doc.data().fecha.toString();
+            var nombreUsuario = "Default";
+  
+            getUser(doc.data().userid)
+              .then((nombreUser) => {
+                nombreUsuario = nombreUser;
+  
+                console.log(texto, imagen, usuarioPost, fecha);
+  
+                var htmlImg = `<div class="post__imagen"><img class="post__imagen__img" src="${imagen}" alt="imagenPost"></img>`;
+                if (imagen <= 1) {
+                  htmlImg = "";
+                }
+  
+                otrosPost.innerHTML += `<div class="post_container">
+                  <div class="post">
+                    <div class="usuarioContainer">
+                      <img class="profile" src="../media/profile_pic.webp" alt="ProfilePic"></img>
+                      <div class="nombreUsuarioContainer">
+                        <p class="nombreUsuario">${nombreUsuario}</p>
+                        <p class="fechaYhora">${fecha}</p>
+                      </div>
+                    </div>
+                    <p class="post__texto">${texto}</p>
+                    <p class="post__usuario"></p>${htmlImg}
+                  </div>
+                </div>
+              </div>`;
+              })
+              .catch((error) => {
+                console.log("Error al obtener el nombre de usuario:", error);
+              });
+          });
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
         });
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
+    };
+  
+    // Función para verificar si se alcanzó el final de la página
+    const isPageBottom = () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      return scrollTop + clientHeight >= scrollHeight;
+    };
+  
+    // Evento scroll para cargar más entradas cuando se llega al final de la página
+    setTimeout(()=>{
+      window.addEventListener("scroll", () => {
+        if (isPageBottom()) {
+          loadEntries();
+        }
       });
+    },1000)
+    
+  
+    // Cargar las primeras entradas al cargar la página
+    loadEntries();
+};
+
+const getUser = (userid) => {
+  return db.collection("usuarios")
+    .where("userid", "==", userid)
+    .get()
+    .then((querySnapshot) => {
+      let username = "";
+      querySnapshot.forEach((doc) => {
+        username = doc.data().username;
+      });
+      console.log(`NOMBRE DE USUARIO = ${username}`);
+      return username;
+    })
+    .catch((error) => {
+      console.log("Error getting user: ", error);
+    });
 };
 
 getAllEntries();
