@@ -97,6 +97,11 @@ body{
     position: fixed;
     color: white;
 }
+
+img{
+    object-fit: cover;
+    object-position: center center;
+}
 .imagen{
     width: 100%;
     height: 100%;

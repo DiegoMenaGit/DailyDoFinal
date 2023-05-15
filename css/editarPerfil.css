@@ -9,7 +9,10 @@ body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: rgb(13, 13, 13);
 }
-
+img{
+    object-fit: cover;
+    object-position: center center;
+}
 .fondo{
     display: flex;
     justify-content: center;
