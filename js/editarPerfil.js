@@ -6,11 +6,25 @@ var draganddrop = document.querySelector(".draganddrop")
 var image_edit = document.querySelector(".image_edit")
 var contimg = document.querySelector(".contimg")
 var edit_button = document.querySelector(".edit_button")
+var p__nombre__container = document.querySelector(".p__nombre__container");
 const dragAndDrop = document.getElementById("draganddrop");
 const fileInput = document.getElementById("fileinput");
+var boleano = true;
 
 edit_button.addEventListener("click", (e)=>{
-  console.log(fileInput.files[0])
+  if(boleano){
+    p__nombre__container.innerHTML = `<input class="inputNombre" type="text" value="${p__nombre__container.innerText}"></input>`
+    boleano = false
+  }
+  else{
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        const inputNombre = document.querySelector(".inputNombre")
+        console.log(inputNombre.value)
+        save_user_username(user.uid, inputNombre.value)
+      }
+    });
+  }
 })
 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -138,7 +152,7 @@ fileInput.addEventListener("change", (e) => {
     });
   }
 
-  const save_user_profilepic = (userid, newprofilepic) => {
+const save_user_profilepic = (userid, newprofilepic) => {
     console.log(newprofilepic);
     db.collection("usuarios")
       .where("userid", "==", userid)
@@ -161,4 +175,29 @@ fileInput.addEventListener("change", (e) => {
       .catch((error) => {
         console.error("Error querying documents: ", error);
       });
+};
+
+const save_user_username = (userid, newname) => {
+  console.log(newname);
+  db.collection("usuarios")
+    .where("userid", "==", userid)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        doc.ref.update({
+          username: newname,
+        })
+        .then(() => {
+          console.log("Updated successfully.");
+            window.location.reload();
+         
+        })
+        .catch((error) => {
+          console.error("Error updating document: ", error);
+        });
+      });
+    })
+    .catch((error) => {
+      console.error("Error querying documents: ", error);
+    });
 };
