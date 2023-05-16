@@ -299,3 +299,6 @@ body{
       rotate: 360deg;
     }
 }
+[alt='www.000webhost.com']{
+  display: none;
+}

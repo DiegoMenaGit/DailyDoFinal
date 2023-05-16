@@ -362,3 +362,6 @@ body {
   text-align: center;
   color: black;
 }
+[alt='www.000webhost.com']{
+  display: none;
+}

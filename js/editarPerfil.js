@@ -5,6 +5,13 @@ var draganddrop_container = document.querySelector(".draganddrop_container")
 var draganddrop = document.querySelector(".draganddrop")
 var image_edit = document.querySelector(".image_edit")
 var contimg = document.querySelector(".contimg")
+var edit_button = document.querySelector(".edit_button")
+const dragAndDrop = document.getElementById("draganddrop");
+const fileInput = document.getElementById("fileinput");
+
+edit_button.addEventListener("click", (e)=>{
+  console.log(fileInput.files[0])
+})
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -79,8 +86,7 @@ document.addEventListener("click", (e) => {
 });
 
 
-const dragAndDrop = document.getElementById("draganddrop");
-const fileInput = document.getElementById("fileinput");
+
 
 dragAndDrop.addEventListener("dragenter", (event) => {
   event.preventDefault();
@@ -98,28 +104,22 @@ dragAndDrop.addEventListener("dragleave", () => {
 dragAndDrop.addEventListener("drop", (event) => {
   event.preventDefault();
   dragAndDrop.classList.remove("highlight");
+  console.log("Archivo insertado")
   const files = event.dataTransfer.files;
-  console.log(files);
-  if (files.length > 0 && files[0].type.startsWith("image/")) {
-    fileInput.files = files;
-    //fileInput.value = files[0].name;
-  }
+  console.log(files[0]);
+  subirImagen(files[0]);
 });
 
-fileInput.addEventListener("change", () => {
-  if (fileInput.files.length > 0 && fileInput.files[0].type.startsWith("image/")) {
-    dragAndDrop.classList.remove("highlight");
-    dragAndDrop.querySelector(".text").innerHTML = fileInput.files[0].name;
-  } else {
-    dragAndDrop.querySelector(".text").innerHTML = "Drag and drop images here <br> or <br> Click to select images";
-  }
-});
 
 fileInput.addEventListener("change", (e) => {
+    subirImagen(fileInput.files[0]);
+  });
+
+  function subirImagen(archivo){
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         var uid = user.uid;
-        const file = fileInput.files[0];
+        const file = archivo;
         const storageRef = firebase.storage().ref();
         
         if (file != null) {
@@ -129,7 +129,6 @@ fileInput.addEventListener("change", (e) => {
           uploadTask.on("state_changed", null, null, () => {
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
               save_user_profilepic(uid, downloadURL);
-             
             });
           });
         } else {
@@ -137,7 +136,7 @@ fileInput.addEventListener("change", (e) => {
         }
       }
     });
-  });
+  }
 
   const save_user_profilepic = (userid, newprofilepic) => {
     console.log(newprofilepic);
@@ -151,6 +150,8 @@ fileInput.addEventListener("change", (e) => {
           })
           .then(() => {
             console.log("Updated successfully.");
+              window.location.reload();
+           
           })
           .catch((error) => {
             console.error("Error updating document: ", error);

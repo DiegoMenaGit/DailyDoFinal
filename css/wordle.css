@@ -174,3 +174,6 @@ body{
   transition: 200ms;
   cursor: pointer;
 }
+[alt='www.000webhost.com']{
+  display: none;
+}

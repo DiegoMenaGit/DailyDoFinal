@@ -191,3 +191,6 @@ label{
       transform: rotate(1turn);
     }
   }
+  [alt='www.000webhost.com']{
+    display: none;
+}
