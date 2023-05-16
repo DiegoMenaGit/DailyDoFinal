@@ -76,6 +76,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
     if (user) {
       var uid = user.uid;
       var email = user.email;
+      var puntos = 0;
       console.log(`${uid} y ${email}`);
         send_button.addEventListener("click", async (e)=>{
             console.log("enviando...")
@@ -85,7 +86,21 @@ firebase.auth().onAuthStateChanged(async function (user) {
             .get()
             .then(() => {
               setTimeout(()=>{
-                window.location.href = "../html/calendario.html";
+                if (hora_interna <= 3){
+                  puntos = -10
+                }
+                else if(hora_interna > 3 && hora_interna <= 7){
+                  puntos = -5
+                }
+                else if(hora_interna >= 8 && hora_interna <= 9){
+                  puntos = 5
+                }
+                else{
+                  puntos = -3
+                }
+                update_points(uid, puntos).then(()=>{
+                  window.location.href = "../html/calendario.html";
+                })
               }, 1000)
             })
             .catch((error) => {
@@ -114,7 +129,41 @@ firebase.auth().onAuthStateChanged(async function (user) {
         console.error("Error updating document: ", error);
       });
   };
+
+  const update_points = (userid, points) => {
+    return new Promise((resolve, reject) => {
+      db.collection("usuarios")
+        .where("userid", "==", userid)
+        .get()
+        .then((querySnapshot) => {
+          if (!querySnapshot.empty) {
+            const doc = querySnapshot.docs[0];
+            const currentPoints = parseInt(doc.data().points) || 0;
+            const newPoints = currentPoints + points;
   
+            db.collection("usuarios")
+              .doc(doc.id)
+              .update({ points: newPoints })
+              .then(() => {
+                console.log("Puntos actualizados.");
+                console.log(userid + " " + newPoints);
+                resolve(newPoints);
+              })
+              .catch((error) => {
+                console.log("Error al actualizar puntos:", error);
+                reject(error);
+              });
+          } else {
+            console.log("El usuario no existe.");
+            reject("User not found.");
+          }
+        })
+        .catch((error) => {
+          console.log("Error al obtener usuario:", error);
+          reject(error);
+        });
+    });
+  };
 
 particlesJS("particle", {
     "particles": {

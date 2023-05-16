@@ -3,6 +3,7 @@ const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".high-score");
 const controls = document.querySelectorAll(".controls i");
 
+const db = firebase.firestore();
 let gameOver = false;
 let foodX, foodY;
 let snakeX = 5, snakeY = 5;
@@ -34,9 +35,20 @@ const updateFoodPosition = () => {
     foodY = Math.floor(Math.random() * 30) + 1;
 }
 
-const handleGameOver = () => {
-    clearInterval(setIntervalId);
-    location.reload();
+const handleGameOver = (score) => {
+    
+    firebase.auth().onAuthStateChanged(async function (user) {
+        if (user) {
+            update_points(user.uid, score).then(()=>{
+                clearInterval(setIntervalId);
+                location.reload();
+            })
+        }
+        else{
+            clearInterval(setIntervalId);
+            location.reload()
+        }
+    });
 }
 
 const changeDirection = e => {
@@ -58,7 +70,7 @@ const changeDirection = e => {
 controls.forEach(button => button.addEventListener("click", () => changeDirection({ key: button.dataset.key })));
 
 const initGame = () => {
-    if(gameOver) return handleGameOver();
+    if(gameOver) return handleGameOver(score);
     let html = `<div class="food" style="grid-area: ${foodY} / ${foodX}"></div>`;
 
     // Checking if the snake hit the food
@@ -95,6 +107,41 @@ const initGame = () => {
     }
     playBoard.innerHTML = html;
 }
+
+const update_points = (userid, points) => {
+    return new Promise((resolve, reject) => {
+      db.collection("usuarios")
+        .where("userid", "==", userid)
+        .get()
+        .then((querySnapshot) => {
+          if (!querySnapshot.empty) {
+            const doc = querySnapshot.docs[0];
+            const currentPoints = parseInt(doc.data().points) || 0;
+            const newPoints = currentPoints + points;
+  
+            db.collection("usuarios")
+              .doc(doc.id)
+              .update({ points: newPoints })
+              .then(() => {
+                console.log("Puntos actualizados.");
+                console.log(userid + " " + newPoints);
+                resolve(newPoints);
+              })
+              .catch((error) => {
+                console.log("Error al actualizar puntos:", error);
+                reject(error);
+              });
+          } else {
+            console.log("El usuario no existe.");
+            reject("User not found.");
+          }
+        })
+        .catch((error) => {
+          console.log("Error al obtener usuario:", error);
+          reject(error);
+        });
+    });
+};
 
 updateFoodPosition();
 setIntervalId = setInterval(initGame, 100);

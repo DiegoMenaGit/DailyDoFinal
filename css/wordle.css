@@ -14,8 +14,19 @@ body{
 .volver_container{
   position: absolute;
   width: 100vw;
-  height: 8vh;
+  height: 11vh;
   background-color: #26907d;
+}
+.volver {
+  z-index: 5000;
+  left: 0vw;
+  width: 10vw;
+  height: 10vh;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
 }
 .wordle_container{
   width: 100vw;
@@ -152,17 +163,7 @@ body{
   }
 }
 
-.volver {
-  z-index: 5000;
-  left: 0vw;
-  width: 10vw;
-  height: 6vw;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-}
+
 
 .image_logo2 {
   transition: 200ms;

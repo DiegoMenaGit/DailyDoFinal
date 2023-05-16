@@ -196,18 +196,26 @@ firebase.auth().onAuthStateChanged(function (user) {
   });
 
 const save_post = (userid, text, img, fecha) => {
-    db.collection("dailypost").doc().set({
+    const postRef = db.collection("dailypost").doc(); // Create a new document reference
+    
+    // Use FieldValue.increment() to generate an auto-incremental value
+    const increment = firebase.firestore.FieldValue.increment(1);
+    
+    postRef.set({
+      postid: increment, // Add the auto-incremental value
       userid,
       text,
       img,
-      fecha
-    }).then(() => {
-      console.log("Enviado.");
-      console.log(userid, text, img, fecha);
-      location.reload();
-    }).catch((error) => {
-      console.error("Error writing document: ", error);
-    });
+      fecha,
+    })
+      .then(() => {
+        console.log("Enviado.");
+        console.log(userid, text, img, fecha);
+        location.reload();
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+      });
 };
 const getAllEntries = () => {
     const batchSize = 3; // Número de entradas a cargar en cada lote

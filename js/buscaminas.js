@@ -11,6 +11,7 @@ const explosionSound = new Audio("../media/explosion.mp3");
 const congratilationSound = new Audio("../media/tada.mp3");
 const gameBoard = document.getElementById("gameBoard");
 var audio = document.getElementById("myAudio");
+const db = firebase.firestore();
 
 volver.addEventListener("click", () => {
   window.location.href = "../html/menuJuegos.html";
@@ -141,11 +142,33 @@ const fruitMap = {
 if (revealedCount === ROWS * COLS - BOMBS) {
   if (!isPlaying) {
     stopAudio();
-  congratilationSound.play();
+    congratilationSound.play();
+    firebase.auth().onAuthStateChanged(async function (user) {
+      if (user) {
+        console.log(user.uid)
+          update_points(user.uid, 5).then(()=>{
+            location.reload();
+          })
+      }
+      else{
+          location.reload()
+      }
+  });
   }
-  setTimeout(() => {
-	location.reload();
-  }, 1500);
+  else{
+    firebase.auth().onAuthStateChanged(async function (user) {
+      if (user) {
+        console.log(user.uid)
+          update_points(user.uid, 5).then(()=>{
+            location.reload();
+          })
+      }
+      else{
+          location.reload()
+      }
+  });
+  }
+
 	return;
 }
 
@@ -264,3 +287,38 @@ window.addEventListener("load", () => {
     document.body.removeChild("loader");
   });
 });
+
+const update_points = (userid, points) => {
+  return new Promise((resolve, reject) => {
+    db.collection("usuarios")
+      .where("userid", "==", userid)
+      .get()
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          const doc = querySnapshot.docs[0];
+          const currentPoints = parseInt(doc.data().points) || 0;
+          const newPoints = currentPoints + points;
+
+          db.collection("usuarios")
+            .doc(doc.id)
+            .update({ points: newPoints })
+            .then(() => {
+              console.log("Puntos actualizados.");
+              console.log(userid + " " + newPoints);
+              resolve(newPoints);
+            })
+            .catch((error) => {
+              console.log("Error al actualizar puntos:", error);
+              reject(error);
+            });
+        } else {
+          console.log("El usuario no existe.");
+          reject("User not found.");
+        }
+      })
+      .catch((error) => {
+        console.log("Error al obtener usuario:", error);
+        reject(error);
+      });
+  });
+};
