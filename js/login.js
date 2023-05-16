@@ -113,7 +113,7 @@ boton2.addEventListener("click", async (e) => {
         await new Promise((resolve) => setTimeout(resolve, 3000)); // Delay for 3 seconds
 
         const usernameValue = username.value || "randomGuy";
-        await save_task(userId, usernameValue, "0", "");
+        await save_task(userId, usernameValue, 0, "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/134611813/original/8833c82d793f87e6939f2ce863f55e1b6b1416cf/design-minimalist-profile-pictures.jpg");
 
         // Clear the form
         allInputs.forEach((input) => {

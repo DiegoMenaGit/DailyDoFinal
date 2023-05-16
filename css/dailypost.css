@@ -276,8 +276,65 @@ img{
     right: 0;
     width: 26vw;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 200;
-    background-color: rgba(233,100,121, 0.5);
+    background-color: rgba(24, 0, 132, 0.5);
+}
+
+.leaderboard{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 3vh 0 0 0;
+    font-size: 5vh;
+}
+
+.ranking{
+    background: rgb(39, 18, 131);
+    border-radius: 10vh;
+    margin: 5vh 0 0 0;
+    width: 20vw;
+    height: 60vh;
+    display: grid;
+    grid-template-rows: 1fr 2fr 2fr 2fr;
+    grid-template-columns: 1fr;
+}
+
+.ranking__div{
+    background: linear-gradient(red, blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ranking__content{
+    background-color: #485579;
+    overflow: hidden;
+    border-radius: 4vh;
+    width: 18vw;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.ranking_img{
+    width: 5vh;
+    height: 5vh;
+}
+.trophy{
+    border-radius: 10vh 10vh 0 0;
+    background: #ffa742;
+}
+.primero{
+    background: #8294C4;
+}
+.segundo{
+    background: #ACB1D6;
+}
+.tercero{
+    background: #DBDFEA;
+    border-radius: 0 0 10vh 10vh;
 }
 
 .bars_container{

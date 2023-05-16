@@ -1,5 +1,7 @@
 console.log("funciono")
 
+var leaderboard =  document.querySelector(".leaderboard")
+var ranking = document.querySelector(".ranking")
 var p_username = document.querySelector(".p_username")
 var imagenPerfil = document.querySelector(".imagen")
 var imagenPerfilConatiner = document.querySelector(".foto_perfil")
@@ -35,7 +37,7 @@ imagenPerfilConatiner.addEventListener("click", (e) => {
       if (user) {
         getUser(user.uid)
           .then((nombreUser) => {
-            console.log(nombreUser)
+           // console.log(nombreUser)
             p_username.innerHTML = nombreUser.username;
           })
           .catch((error) => {
@@ -49,7 +51,7 @@ imagenPerfilConatiner.addEventListener("click", (e) => {
     boleano = false
   }
   else{
-    console.log("estoy en la derecha")
+    //console.log("estoy en la derecha")
     p_username.innerHTML = "";
     imagenPerfilConatiner.style.setProperty("transform", "translateX(0)")
     boleano = true
@@ -69,16 +71,22 @@ bars_container.addEventListener("click", (e)=>{
     
 })
 
+
 function esconderSideBar(boleano){
-    console.log(boleano)
+   // console.log(boleano)
     if(boleano){
+        leaderboard.style.setProperty("opacity", "0")
         cuerpo.style.setProperty("grid-template-columns", "1fr")
         side.style.setProperty("width", "0")
+        ranking.style.setProperty("width", "0")
         //posteador.style.setProperty("width", "100vw")
     }
     else{
         cuerpo.style.setProperty("grid-template-columns", "1fr 2fr")
         side.style.setProperty("width", "26vw")
+        ranking.style.setProperty("width", "20vw")
+        leaderboard.style.setProperty("opacity", "1")
+        //ranking.style.setProperty("width", "0")
     }
 }
 logo.addEventListener("click", (e)=>{
@@ -100,7 +108,7 @@ const observer = new IntersectionObserver(entries => {
   observer.observe(divToObserve);
 
 imagenBoton.addEventListener("click", (e)=>{
-    console.log("Abrir modal")
+   // console.log("Abrir modal")
     draganddrop_container.style.display = "flex";
     setTimeout(()=>{
         modalAbierto = true;
@@ -109,7 +117,7 @@ imagenBoton.addEventListener("click", (e)=>{
 
 document.addEventListener("click", (e) => {
     if(modalAbierto){
-        console.log("Super Cerrar Modal")
+      //  console.log("Super Cerrar Modal")
         if (!draganddrop.contains(e.target)) {
             draganddrop_container.style.display = "none";
             modalAbierto = false
@@ -138,7 +146,7 @@ dragAndDrop.addEventListener("drop", (event) => {
   event.preventDefault();
   dragAndDrop.classList.remove("highlight");
   const files = event.dataTransfer.files;
-  console.log(files);
+  // console.log(files);
   if (files.length > 0 && files[0].type.startsWith("image/")) {
     fileInput.files = files;
     //fileInput.value = files[0].name;
@@ -160,7 +168,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       var uid = user.uid;
       var email = user.email;
-      console.log(`${uid} y ${email}`);
+     // console.log(`${uid} y ${email}`);
       boton_enviar.addEventListener("click", (e)=>{
         var fechaHoraActual = new Date();
         var dia = ("0" + fechaHoraActual.getDate()).slice(-2);
@@ -171,7 +179,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         var formato = mes + "/" + dia + "/" + anio + " " + hora + ":" + minutos;
 
-        console.log(`${postear_textarea.value}, ${fileInput.value}`)
+      //  console.log(`${postear_textarea.value}, ${fileInput.value}`)
         // Upload the file to Firebase Storage
         const file = fileInput.files[0];
         const storageRef = firebase.storage().ref();
@@ -210,21 +218,29 @@ const save_post = (userid, text, img, fecha) => {
     })
       .then(() => {
         console.log("Enviado.");
-        console.log(userid, text, img, fecha);
+       // console.log(userid, text, img, fecha);
         location.reload();
       })
       .catch((error) => {
         console.error("Error writing document: ", error);
       });
 };
+
+var primero = document.querySelector(".primero");
+var segundo = document.querySelector(".segundo");
+var tercero = document.querySelector(".tercero");
+const generarRanking = () =>{
+
+}
+
 const getAllEntries = () => {
-    const batchSize = 3; // Número de entradas a cargar en cada lote
+    const batchSize = 10; // Número de entradas a cargar en cada lote
     let lastEntry = null; // Última entrada cargada
-  
     const loadEntries = () => {
       db.collection("dailypost")
         .orderBy("fecha") // Ordenar por fecha ascendente
         .startAfter(lastEntry) // Comenzar después de la última entrada cargada
+        //sizee > 20 ? batchSize : sizee
         .limit(batchSize) // Limitar el número de entradas a cargar en cada lote
         .get()
         .then((querySnapshot) => {
@@ -233,6 +249,8 @@ const getAllEntries = () => {
             entries.push(doc);
             lastEntry = doc; // Actualizar la última entrada cargada
           });
+
+          entries.reverse();
   
           // Generar los divs para las entradas cargadas
           entries.forEach((doc) => {
@@ -241,12 +259,11 @@ const getAllEntries = () => {
             var usuarioPost = doc.data().userid;
             var fecha = doc.data().fecha.toString();
             var nombreUsuario = "Default";
-  
             getUser(doc.data().userid)
               .then((nombreUser) => {
-                console.log(nombreUser)
+                //console.log(nombreUser)
   
-                console.log(texto, imagen, usuarioPost, fecha);
+                //console.log(texto, imagen, usuarioPost, fecha);
   
                 var htmlImg = `<div class="post__imagen"><img class="post__imagen__img" src="${imagen}" alt="imagenPost"></img>`;
                 if (imagen <= 1) {
@@ -267,6 +284,7 @@ const getAllEntries = () => {
                   </div>
                 </div>
               </div>`;
+                
               })
               .catch((error) => {
                 console.log("Error al obtener el nombre de usuario:", error);
@@ -308,16 +326,62 @@ const getUser = (userid) => {
       let username = "";
       querySnapshot.forEach((doc) => {
         username = doc.data().username;
-        profilepic = doc.data().profilepic
+        profilepic = doc.data().profilepic;
+        points = doc.data().points
       });
-      console.log(`NOMBRE DE USUARIO = ${username}`);
-      return {username, profilepic};
+      // console.log(`NOMBRE DE USUARIO = ${username}`);
+      return {username, profilepic, points};
     })
     .catch((error) => {
       console.log("Error getting user: ", error);
     });
 };
 
+const getAllUsers = () => {
+  return new Promise((resolve, reject) => {
+    db.collection("usuarios")
+      .orderBy("points", "desc")  
+      .limit(3)
+      .get()
+      .then((querySnapshot) => {
+        const users = [];
+        querySnapshot.forEach((doc) => {
+          const { username, profilepic, points } = doc.data();
+          users.push({ username, profilepic, points });
+        });
+        resolve(users);
+      })
+      .catch((error) => {
+        console.log("Error getting users: ", error);
+        reject(error);
+      });
+  });
+};
+var primero = document.querySelector(".primero") 
+var segindo = document.querySelector(".segundo")
+var tercero = document.querySelector(".tercero")
+getAllUsers()
+  .then((users) => {
+    primero.innerHTML = `<div class="ranking__content">
+    <img class="ranking_img" src="${users[0].profilepic}" alt="imagen">
+    <p class="ranking_username">${users[0].username}</p>
+    <p class="ranking_points">${users[0].points}</p>
+</div>`
+segundo.innerHTML = `<div class="ranking__content">
+    <img class="ranking_img" src="${users[1].profilepic}" alt="imagen">
+    <p class="ranking_username">${users[1].username}</p>
+    <p class="ranking_points">${users[1].points}</p>
+</div>`
+tercero.innerHTML = `<div class="ranking__content">
+    <img class="ranking_img" src="${users[2].profilepic}" alt="imagen">
+    <p class="ranking_username">${users[2].username}</p>
+    <p class="ranking_points">${users[2].points}</p>
+</div>`
+    console.log(users[0]); 
+  })
+  .catch((error) => {
+    
+  });
 getAllEntries();
 
 window.addEventListener("load", () => {
