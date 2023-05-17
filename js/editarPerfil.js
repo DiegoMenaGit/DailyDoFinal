@@ -1,4 +1,5 @@
 const db = firebase.firestore();
+var puntos = document.querySelector(".puntos")
 var nombre_container__p = document.querySelector(".nombre_container__p")
 var email_container__p = document.querySelector(".email_container__p")
 var draganddrop_container = document.querySelector(".draganddrop_container")

@@ -54,8 +54,7 @@ function initGame(e) {
                     })
                 }
                 else{
-                    clearInterval(setIntervalId);
-                    location.reload()
+                    return randomWord();
                 }
             });
             
