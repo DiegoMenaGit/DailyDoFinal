@@ -168,8 +168,8 @@ async function creardias(fechaString){
           //console.log("ya esta")
         }
         else{
-          const diaElement = document.createElement("div"); // create the day element
-          const diaPElement = document.createElement("p"); // create the paragraph element inside the day element
+          const diaElement = document.createElement("div"); 
+          const diaPElement = document.createElement("p"); 
           const diaPOcultoElement = document.createElement("p");
           if(contadorDias <= 9){
             var fechaDelDia = fechaString+"0"+contadorDias;  
@@ -183,13 +183,13 @@ async function creardias(fechaString){
               resolve();
             });
           })
-          diaPElement.innerText = contadorDias; // set the day number as the text content of the paragraph element
-          diaElement.appendChild(diaPElement); // append the paragraph element to the day element
+          diaPElement.innerText = contadorDias; 
+          diaElement.appendChild(diaPElement); 
           diaElement.appendChild(diaPOcultoElement)
-          diaElement.classList.add("dia"); // add the "dia" class to the day element
+          diaElement.classList.add("dia"); 
           diaPElement.classList.add("dia_p");
           diaPOcultoElement.classList.add("dia_p_oculto");
-          diaElement.addEventListener("click", (e) => { // add a click event listener to the day element
+          diaElement.addEventListener("click", (e) => {
             console.log("Clicked on day", e.currentTarget.querySelector(".dia_p").innerText);
             mensaje.innerHTML = `
   Dia:<br>

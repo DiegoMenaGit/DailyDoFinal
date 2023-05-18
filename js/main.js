@@ -22,6 +22,7 @@ var logout = document.querySelector(".logout");
 var sleep = document.querySelector(".sleep");
 var dailyPost = document.querySelector(".dailyPost");
 var perfil = document.querySelector(".perfil");
+var correr = document.querySelector(".correr")
 
 var header = document.querySelector(".header");
 var image = document.querySelector(".image_logo2");
@@ -98,6 +99,9 @@ dailyPost.addEventListener("click", ()=>{
 })
 perfil.addEventListener("click",()=>{
   window.location.href ="./html/editarPerfil.html"
+})
+correr.addEventListener("click",()=>{
+  window.location.href ="./html/correr.html"
 })
 firebase.auth().onAuthStateChanged(async function (user) {
   var nameuser = "Default";

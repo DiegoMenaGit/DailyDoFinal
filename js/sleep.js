@@ -114,6 +114,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
 
   const save_dormir = (userid, horas, fecha) => {
     // Consulta Firestore para buscar un documento que coincida con el `userid` y la `fecha`
+    var correr = "";
     db.collection("dormir").where("userid", "==", userid).where("fecha", "==", fecha).get()
       .then((querySnapshot) => {
         if (!querySnapshot.empty) {
@@ -122,7 +123,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
           return docRef.update({horas});
         } else {
           // Si no se encuentra un documento existente, crea uno nuevo
-          return db.collection("dormir").doc().set({userid, horas, fecha});
+          return db.collection("dormir").doc().set({userid, horas, correr, fecha});
         }
       })
       .catch((error) => {
