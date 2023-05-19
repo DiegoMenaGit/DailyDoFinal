@@ -36,7 +36,7 @@ window.addEventListener("load", () => {
   });
 
 volver.addEventListener("click", () => {
-    window.location.href = "../html/sleep.html";
+    window.location.href = "../index.html";
   });
   
   
@@ -126,8 +126,12 @@ async function onAuthStateChangedHandler(user, fechadeldia, elemento, diaPOculto
       querySnapshot.forEach((doc) => {
         var fecha = doc.data().fecha;
         var horas = doc.data().horas;
+        var correr = doc.data().correr;
+        if (correr == ""){
+          correr = "0";
+        }
         
-        diaPOcultoElement.innerHTML = `${horas}h dormidas`;
+        diaPOcultoElement.innerHTML = `${horas}h dormidas ${correr}km corridos`;
 
         console.log(fecha, fechadeldia)
         if(horas <= 3){

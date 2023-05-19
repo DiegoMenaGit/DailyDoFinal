@@ -56,13 +56,14 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
+    background-color: rgb(17, 138, 212);
 }
 .slider{
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    
     position: absolute;
     width: 80vw;
     height: 10vh;
