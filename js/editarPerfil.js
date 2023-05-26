@@ -38,7 +38,9 @@ firebase.auth().onAuthStateChanged(function (user) {
             console.log(nombreUser)
             nombre_container__p.innerHTML = nombreUser.username;
             email_container__p.innerHTML = email;
-            contimg.innerHTML = `<img class="profile_pic" src="${nombreUser.fotodeperfil}" alt="foto_perfil">`
+            contimg.innerHTML = `<img class="profile_pic" src="${nombreUser.fotodeperfil}" alt="foto_perfil">`;
+          //console.log(nombreUser.points)
+            puntos.innerHTML = `${nombreUser.points}`
           })
           .catch((error) => {
             console.log("Error al obtener el nombre de usuario:", error);
@@ -58,9 +60,10 @@ const getUser = (userid) => {
         querySnapshot.forEach((doc) => {
           username = doc.data().username;
           fotodeperfil = doc.data().profilepic;
+          points = doc.data().points;
         });
         console.log(`NOMBRE DE USUARIO = ${username}`);
-        return {username, fotodeperfil};
+        return {username, fotodeperfil, points};
       })
       .catch((error) => {
         console.log("Error getting user: ", error);

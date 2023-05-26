@@ -11,6 +11,15 @@ body{
     overflow: hidden;
     background-color: rgb(37, 37, 37);
 }
+.buscaminas{
+  filter: grayscale();
+}
+.snake{
+  filter:grayscale();
+}
+.wordle{
+  filter: grayscale();
+}
 
 #image-track{
   display: flex;
@@ -79,7 +88,6 @@ img {
     opacity: 0;
     visibility: hidden;
 }
-
 .loader::after{
     content: "";
     width: 75px;

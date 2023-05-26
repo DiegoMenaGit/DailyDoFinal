@@ -151,6 +151,12 @@ label{
     border-top-color: #00ffe7;
     animation: loading 0.75s ease infinite;
 }
+.puntos{
+    border-radius: 10px;
+    font-size: 30px;
+    background: rgb(22, 22, 91);
+    color: rgb(255, 255, 255);
+  }
 .draganddrop_container{
     display: none;
     z-index: 1000;
