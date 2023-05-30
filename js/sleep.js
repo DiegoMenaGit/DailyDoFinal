@@ -39,7 +39,7 @@ sumar_horas.addEventListener("click", (e)=>{
         fondo.style.rotate = `${grados}deg`
         ciclos.style.rotate = `${grados}deg`
         contenedor_horas.style.transform = `translateY(${horasTotales}px)`;
-        console.log(horasTotales);
+       //console.log(horasTotales);
     }
     else{
         console.log("No se puede dormir mas en un dia")
@@ -60,7 +60,7 @@ restar_horas.addEventListener("click", (e)=>{
     hora_interna -= 1;
     fondo.style.rotate = `${grados}deg`
     ciclos.style.rotate = `${grados}deg`
-    console.log(horasTotales)
+    //console.log(horasTotales)
     contenedor_horas.style.transform = `translateY(${horasTotales}px)`;
     }
     else{
@@ -77,10 +77,10 @@ firebase.auth().onAuthStateChanged(async function (user) {
       var uid = user.uid;
       var email = user.email;
       var puntos = 0;
-      console.log(`${uid} y ${email}`);
+     // console.log(`${uid} y ${email}`);
         send_button.addEventListener("click", async (e)=>{
             console.log("enviando...")
-            console.log(`${fecha_input.value} ${hora_interna} ${uid}`)
+           // console.log(`${fecha_input.value} ${hora_interna} ${uid}`)
             save_dormir(uid, hora_interna, fecha_input.value)
             db.collection("dormir")
             .get()
@@ -147,7 +147,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
               .update({ points: newPoints })
               .then(() => {
                 console.log("Puntos actualizados.");
-                console.log(userid + " " + newPoints);
+                //console.log(userid + " " + newPoints);
                 resolve(newPoints);
               })
               .catch((error) => {

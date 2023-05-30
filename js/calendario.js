@@ -119,7 +119,7 @@ async function onAuthStateChangedHandler(user, fechadeldia, elemento, diaPOculto
     if (user) {
       var uid = user.uid;
       var email = user.email;
-      console.log(`${uid} y ${email}`);
+      //console.log(`${uid} y ${email}`);
       var fechaFirebase = new Date();
       fechaString = fechaFirebase.toISOString().substring(0, 8);
       const querySnapshot = await getDormir().where("userid", "==", uid).where("fecha", "==", fechadeldia).get();
@@ -133,7 +133,7 @@ async function onAuthStateChangedHandler(user, fechadeldia, elemento, diaPOculto
         
         diaPOcultoElement.innerHTML = `${horas}h dormidas ${correr}km corridos`;
 
-        console.log(fecha, fechadeldia)
+       // console.log(fecha, fechadeldia)
         if(horas <= 3){
             elemento.classList.add("muymal")
         }
@@ -194,7 +194,7 @@ async function creardias(fechaString){
           diaPElement.classList.add("dia_p");
           diaPOcultoElement.classList.add("dia_p_oculto");
           diaElement.addEventListener("click", (e) => {
-            console.log("Clicked on day", e.currentTarget.querySelector(".dia_p").innerText);
+           // console.log("Clicked on day", e.currentTarget.querySelector(".dia_p").innerText);
             mensaje.innerHTML = `
   Dia:<br>
   <span >${e.currentTarget.querySelector('.dia_p').innerText}</span><br>
@@ -234,11 +234,11 @@ async function creardias(fechaString){
   
       if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
           if ( xDiff > 0 ) {
-              console.log("LEFT SWIPE")
+            //  console.log("LEFT SWIPE")
               swipeRight();
               
           } else {
-              console.log("RIGHT SWIPE")
+             // console.log("RIGHT SWIPE")
               swipeLeft();
           }                       
       } else {

@@ -111,7 +111,7 @@ volver.addEventListener("click", () => {
           fotodeperfil = doc.data().profilepic;
           points = doc.data().points;
         });
-        console.log(`NOMBRE DE USUARIO = ${username}`);
+       // console.log(`NOMBRE DE USUARIO = ${username}`);
         return {username, fotodeperfil, points};
       })
       .catch((error) => {

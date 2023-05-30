@@ -1,5 +1,3 @@
-console.log("funciono")
-
 var leaderboard =  document.querySelector(".leaderboard")
 var ranking = document.querySelector(".ranking")
 var p_username = document.querySelector(".p_username")
@@ -96,10 +94,10 @@ logo.addEventListener("click", (e)=>{
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        console.log('Header is back on screen!');
+        //console.log('Header is back on screen!');
       }
       else{
-        console.log('Header is not on screen!')
+        //console.log('Header is not on screen!')
       }
     });
   });
@@ -377,7 +375,7 @@ tercero.innerHTML = `<div class="ranking__content">
     <p class="ranking_username">${users[2].username}</p>
     <p class="ranking_points">${users[2].points}</p>
 </div>`
-    console.log(users[0]); 
+    //console.log(users[0]); 
   })
   .catch((error) => {
     

@@ -82,7 +82,7 @@ window.addEventListener("load", () => {
 });
 
 signiUP.addEventListener("click", () => {
-  console.log("Clicker");
+  //console.log("Clicker");
   window.location.href = "./html/login.html";
 });
 sleep.addEventListener("click", ()=>{
@@ -109,7 +109,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
     // User is signed in, get their information
     var uid = user.uid;
     var email = user.email;
-    console.log(`${uid} y ${email}`);
+    //console.log(`${uid} y ${email}`);
 
     signiUP.classList.add("novisible");
     logout.classList.remove("novisible");
@@ -118,7 +118,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
 
     // Loop over the matching documents and log their data to console
     querySnapshot.forEach((doc) => {
-      console.log(doc.data().username);
+      //console.log(doc.data().username);
       nameuser = doc.data().username;
     });
     titol.innerHTML += ", " + nameuser;
@@ -140,7 +140,7 @@ logout.addEventListener("click", (e) => {
 });
 
 sidebar__button.addEventListener("click", (e) => {
-  console.log("HOLA HAGO ALGO");
+  //console.log("HOLA HAGO ALGO");
   sidebar.classList.toggle("closed");
 });
 
@@ -164,7 +164,7 @@ button__form.addEventListener("click", async (e) => {
   input_titulo.value = "";
   input_desc.value = "";
 
-  console.log(`${titulo_form} y ${desc_form}`);
+ // console.log(`${titulo_form} y ${desc_form}`);
 });
 
 const getTasks = () => db.collection("dudas").get();
@@ -174,6 +174,6 @@ const getUsers = () => db.collection("usuarios");
 window.addEventListener("DOMContentLoaded", async (e) => {
   const querySnapshot = await getTasks();
   querySnapshot.forEach((doc) => {
-    console.log(doc.data());
+    //console.log(doc.data());
   });
 });

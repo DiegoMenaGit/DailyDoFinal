@@ -21,7 +21,7 @@ edit_button.addEventListener("click", (e)=>{
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         const inputNombre = document.querySelector(".inputNombre")
-        console.log(inputNombre.value)
+       // console.log(inputNombre.value)
         save_user_username(user.uid, inputNombre.value)
       }
     });
@@ -32,10 +32,10 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       var uid = user.uid;
       var email = user.email;
-      console.log(`${uid} y ${email}`);
+      //console.log(`${uid} y ${email}`);
       getUser(uid)
           .then((nombreUser) => {
-            console.log(nombreUser)
+           // console.log(nombreUser)
             nombre_container__p.innerHTML = nombreUser.username;
             email_container__p.innerHTML = email;
             contimg.innerHTML = `<img class="profile_pic" src="${nombreUser.fotodeperfil}" alt="foto_perfil">`;
@@ -43,7 +43,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             puntos.innerHTML = `${nombreUser.points}`
           })
           .catch((error) => {
-            console.log("Error al obtener el nombre de usuario:", error);
+           // console.log("Error al obtener el nombre de usuario:", error);
         });
     }
     else{
@@ -62,7 +62,7 @@ const getUser = (userid) => {
           fotodeperfil = doc.data().profilepic;
           points = doc.data().points;
         });
-        console.log(`NOMBRE DE USUARIO = ${username}`);
+      //  console.log(`NOMBRE DE USUARIO = ${username}`);
         return {username, fotodeperfil, points};
       })
       .catch((error) => {
@@ -86,7 +86,7 @@ volver.addEventListener("click", () => {
 var modalAbierto = false
 
 image_edit.addEventListener("click", (e)=>{
-    console.log("Abrir modal")
+   // console.log("Abrir modal")
     draganddrop_container.style.display = "flex";
     setTimeout(()=>{
         modalAbierto = true;
@@ -124,7 +124,7 @@ dragAndDrop.addEventListener("drop", (event) => {
   dragAndDrop.classList.remove("highlight");
   console.log("Archivo insertado")
   const files = event.dataTransfer.files;
-  console.log(files[0]);
+ // console.log(files[0]);
   subirImagen(files[0]);
 });
 
@@ -157,7 +157,7 @@ fileInput.addEventListener("change", (e) => {
   }
 
 const save_user_profilepic = (userid, newprofilepic) => {
-    console.log(newprofilepic);
+   // console.log(newprofilepic);
     db.collection("usuarios")
       .where("userid", "==", userid)
       .get()
@@ -182,7 +182,7 @@ const save_user_profilepic = (userid, newprofilepic) => {
 };
 
 const save_user_username = (userid, newname) => {
-  console.log(newname);
+ // console.log(newname);
   db.collection("usuarios")
     .where("userid", "==", userid)
     .get()

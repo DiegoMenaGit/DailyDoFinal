@@ -124,7 +124,7 @@ const update_points = (userid, points) => {
               .update({ points: newPoints })
               .then(() => {
                 console.log("Puntos actualizados.");
-                console.log(userid + " " + newPoints);
+                //console.log(userid + " " + newPoints);
                 resolve(newPoints);
               })
               .catch((error) => {

@@ -173,7 +173,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     // User is signed in, get their information
     var uid = user.uid;
     var email = user.email;
-    console.log(`${uid} y ${email}`);
+   // console.log(`${uid} y ${email}`);
     // ...
   } else {
     // User is signed out, redirect to login page

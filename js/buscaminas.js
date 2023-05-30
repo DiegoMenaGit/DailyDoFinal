@@ -145,7 +145,7 @@ if (revealedCount === ROWS * COLS - BOMBS) {
     congratilationSound.play();
     firebase.auth().onAuthStateChanged(async function (user) {
       if (user) {
-        console.log(user.uid)
+        //console.log(user.uid)
           update_points(user.uid, 5).then(()=>{
             location.reload();
           })
@@ -158,7 +158,7 @@ if (revealedCount === ROWS * COLS - BOMBS) {
   else{
     firebase.auth().onAuthStateChanged(async function (user) {
       if (user) {
-        console.log(user.uid)
+       // console.log(user.uid)
           update_points(user.uid, 5).then(()=>{
             location.reload();
           })
